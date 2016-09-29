@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         //TODO - Add fragments
-        adapter.addFragment(new UpcomingFilmsFragment(), "upcoming_films");
+        adapter.addFragment(new UpcomingFilmsFragment(), getString(R.string.tab_upcoming));
         viewPager.setAdapter(adapter);
     }
 
