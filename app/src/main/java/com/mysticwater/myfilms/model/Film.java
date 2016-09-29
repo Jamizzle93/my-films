@@ -1,3 +1,4 @@
+package com.mysticwater.myfilms.model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
