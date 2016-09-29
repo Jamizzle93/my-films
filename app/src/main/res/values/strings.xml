@@ -3,4 +3,7 @@
 
     <!-- Tab names -->
     <string name="tab_upcoming">Upcoming</string>
+
+    <!-- API Keys -->
+    <string name="moviedb_api_key">0201f736e8e671997dfcc9003c16faac</string>
 </resources>
