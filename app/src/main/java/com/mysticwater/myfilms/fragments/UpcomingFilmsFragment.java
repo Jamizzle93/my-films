@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
@@ -12,6 +14,7 @@ import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -22,6 +25,10 @@ import retrofit2.Response;
 public class UpcomingFilmsFragment extends Fragment {
 
     private View mLayoutView;
+
+    // List View
+    private ListView mFilmsList;
+    private ArrayAdapter<String> mFilmsAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,8 +64,11 @@ public class UpcomingFilmsFragment extends Fragment {
             @Override
             public void onResponse(Call<FilmResults> call, Response<FilmResults> response) {
                 FilmResults films = response.body();
-                for (Film film : films.getFilms()) {
-                    System.out.println(film.getTitle());
+                if (films != null) {
+                    for (Film film : films.getFilms()) {
+                        System.out.println(film.getTitle());
+                    }
+                    fillList(films.getFilms());
                 }
             }
 
@@ -68,7 +78,28 @@ public class UpcomingFilmsFragment extends Fragment {
             }
         });
 
+        // Setup ListView
+        mFilmsList = (ListView) mLayoutView.findViewById(R.id.list_upcoming_films);
+        ArrayList<String> filmTitles = new ArrayList<>();
+        mFilmsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout
+                .simple_list_item_1, filmTitles);
+        mFilmsList.setAdapter(mFilmsAdapter);
+
         return mLayoutView;
+    }
+
+    private void fillList(List<Film> films)
+    {
+        ArrayList<String> titles = new ArrayList<>();
+        for(Film film : films)
+        {
+            titles.add(film.getTitle() + " " + film.getReleaseDate());
+        }
+
+        mFilmsAdapter.clear();
+        mFilmsAdapter.addAll(titles);
+        mFilmsAdapter.notifyDataSetChanged();
+
     }
 
 }
