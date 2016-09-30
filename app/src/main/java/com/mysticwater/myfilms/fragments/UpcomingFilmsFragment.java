@@ -8,7 +8,12 @@ import android.view.ViewGroup;
 
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
+import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
+import com.mysticwater.myfilms.utils.CalendarUtils;
+
+import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +39,31 @@ public class UpcomingFilmsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Film> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        Calendar startCal = Calendar.getInstance();
+        Calendar endCal = Calendar.getInstance();
+        endCal.add(Calendar.MONTH, 1);
+
+        String startCalString = CalendarUtils.calendarToString(startCal);
+        String endCalString = CalendarUtils.calendarToString(endCal);
+
+        final Call<FilmResults> upcomingFilms = theMovieDbService.upcomingReleases(getString(R.string
+                .moviedb_api_key), startCalString, endCalString);
+
+        upcomingFilms.enqueue(new Callback<FilmResults>() {
+            @Override
+            public void onResponse(Call<FilmResults> call, Response<FilmResults> response) {
+                FilmResults films = response.body();
+                for (Film film : films.getFilms()) {
+                    System.out.println(film.getTitle());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FilmResults> call, Throwable t) {
                 t.printStackTrace();
             }
         });
