@@ -13,6 +13,7 @@ import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
 import com.mysticwater.myfilms.utils.CalendarUtils;
+import com.mysticwater.myfilms.views.adapters.FilmAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,7 +29,7 @@ public class UpcomingFilmsFragment extends Fragment {
 
     // List View
     private ListView mFilmsList;
-    private ArrayAdapter<String> mFilmsAdapter;
+    private FilmAdapter mFilmsAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,9 +81,8 @@ public class UpcomingFilmsFragment extends Fragment {
 
         // Setup ListView
         mFilmsList = (ListView) mLayoutView.findViewById(R.id.list_upcoming_films);
-        ArrayList<String> filmTitles = new ArrayList<>();
-        mFilmsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout
-                .simple_list_item_1, filmTitles);
+        ArrayList<Film> filmsList = new ArrayList<>();
+        mFilmsAdapter = new FilmAdapter(getActivity(), filmsList);
         mFilmsList.setAdapter(mFilmsAdapter);
 
         return mLayoutView;
@@ -90,16 +90,9 @@ public class UpcomingFilmsFragment extends Fragment {
 
     private void fillList(List<Film> films)
     {
-        ArrayList<String> titles = new ArrayList<>();
-        for(Film film : films)
-        {
-            titles.add(film.getTitle() + " " + film.getReleaseDate());
-        }
-
         mFilmsAdapter.clear();
-        mFilmsAdapter.addAll(titles);
+        mFilmsAdapter.addAll(films);
         mFilmsAdapter.notifyDataSetChanged();
-
     }
 
 }
