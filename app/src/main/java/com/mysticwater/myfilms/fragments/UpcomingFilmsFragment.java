@@ -60,8 +60,29 @@ public class UpcomingFilmsFragment extends Fragment {
         String startCalString = CalendarUtils.calendarToString(startCal);
         String endCalString = CalendarUtils.calendarToString(endCal);
 
+//        final Call<FilmResults> upcomingFilms = theMovieDbService.upcomingReleases(getString(R.string
+//                .moviedb_api_key), startCalString, endCalString);
+//
+//        upcomingFilms.enqueue(new Callback<FilmResults>() {
+//            @Override
+//            public void onResponse(Call<FilmResults> call, Response<FilmResults> response) {
+//                FilmResults films = response.body();
+//                if (films != null) {
+//                    for (Film film : films.getFilms()) {
+//                        System.out.println(film.getTitle());
+//                    }
+//                    fillList(films.getFilms());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<FilmResults> call, Throwable t) {
+//                t.printStackTrace();
+//            }
+//        });
+
         final Call<FilmResults> upcomingFilms = theMovieDbService.upcomingReleases(getString(R.string
-                .moviedb_api_key), startCalString, endCalString);
+                .moviedb_api_key), startCalString);
 
         upcomingFilms.enqueue(new Callback<FilmResults>() {
             @Override

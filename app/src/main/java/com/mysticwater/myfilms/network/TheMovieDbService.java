@@ -22,11 +22,17 @@ public interface TheMovieDbService {
             @Path("id") String id,
             @Query("api_key") String apiKey);
 
-    @GET("discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22")
+//    @GET("discover/movie?")
+//    Call<FilmResults> upcomingReleases(
+//            @Query("api_key") String apiKey,
+//            @Query("primary_release_date.gte") String startDate, //YYYY-MM-DD
+//            @Query("primary_release_date.lte") String endDate //YYYY-MM-DD
+//    );
+
+    @GET("movie/upcoming?")
     Call<FilmResults> upcomingReleases(
             @Query("api_key") String apiKey,
-            @Query("primary_release_date.gte") String startDate, //YYYY-MM-DD
-            @Query("primary_release_date.lte") String endDate //YYYY-MM-DD
+            @Query("primary_release_date") String primaryDate
     );
 
     public static final Retrofit retrofit = new Retrofit.Builder()
