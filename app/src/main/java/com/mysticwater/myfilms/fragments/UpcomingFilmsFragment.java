@@ -13,10 +13,12 @@ import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
 import com.mysticwater.myfilms.utils.CalendarUtils;
+import com.mysticwater.myfilms.utils.FilmComparator;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -91,6 +93,7 @@ public class UpcomingFilmsFragment extends Fragment {
     private void fillList(List<Film> films)
     {
         mFilmsAdapter.clear();
+        Collections.sort(films, new FilmComparator());
         mFilmsAdapter.addAll(films);
         mFilmsAdapter.notifyDataSetChanged();
     }
