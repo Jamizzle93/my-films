@@ -4,6 +4,10 @@
     <!-- Tab names -->
     <string name="tab_upcoming">Upcoming</string>
 
-    <!-- API Keys -->
+    <!-- Upcoming films row -->
+    <string name="label_release_date">Release Date:</string>
+
+    <!-- API Strings -->
     <string name="moviedb_api_key">0201f736e8e671997dfcc9003c16faac</string>
+    <string name="moviedb_image_w500_url">https://image.tmdb.org/t/p/w500%1$s</string>
 </resources>
