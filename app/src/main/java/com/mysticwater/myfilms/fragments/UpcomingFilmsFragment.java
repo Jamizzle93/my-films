@@ -90,7 +90,7 @@ public class UpcomingFilmsFragment extends Fragment {
                 FilmResults films = response.body();
                 if (films != null) {
                     for (Film film : films.getFilms()) {
-                        System.out.println(film.getTitle());
+                        System.out.println(film.getBackdropPath());
                     }
                     fillList(films.getFilms());
                 }
