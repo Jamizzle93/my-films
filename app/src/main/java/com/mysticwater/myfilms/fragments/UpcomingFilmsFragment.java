@@ -1,5 +1,7 @@
 package com.mysticwater.myfilms.fragments;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +16,8 @@ import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.FilmComparator;
+import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
+import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;
 
 import java.util.ArrayList;
@@ -108,11 +112,24 @@ public class UpcomingFilmsFragment extends Fragment {
         mFilmsAdapter = new FilmAdapter(getActivity(), filmsList);
         mFilmsList.setAdapter(mFilmsAdapter);
 
+        ContentValues cv = new ContentValues();
+        cv.put(FilmColumns.TITLE, "Hello");
+        getActivity().getContentResolver().insert(FilmsProvider.Films.CONTENT_URI, cv);
+
+        Cursor allFilms = getActivity().getContentResolver().query(FilmsProvider.Films.CONTENT_URI, null,
+                null, null, null);
+
+        if (allFilms != null) {
+            while (allFilms.moveToNext()) {
+                System.out.println(allFilms.getString(1));
+            }
+            allFilms.close();
+        }
+
         return mLayoutView;
     }
 
-    private void fillList(List<Film> films)
-    {
+    private void fillList(List<Film> films) {
         mFilmsAdapter.clear();
         Collections.sort(films, new FilmComparator());
         mFilmsAdapter.addAll(films);
