@@ -16,6 +16,7 @@ import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.FilmComparator;
+import com.mysticwater.myfilms.utils.JsonUtils;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;
@@ -95,8 +96,18 @@ public class UpcomingFilmsFragment extends Fragment {
                 if (films != null) {
                     for (Film film : films.getFilms()) {
                         System.out.println(film.getBackdropPath());
+                        insertFilm(film);
                     }
                     fillList(films.getFilms());
+
+                    Cursor allFilms = getActivity().getContentResolver().query(FilmsProvider.Films.CONTENT_URI, null,
+                            null, null, null);
+                    if (allFilms != null) {
+                        while (allFilms.moveToNext()) {
+                            System.out.println(allFilms.getString(1));
+                        }
+                        allFilms.close();
+                    }
                 }
             }
 
@@ -112,19 +123,10 @@ public class UpcomingFilmsFragment extends Fragment {
         mFilmsAdapter = new FilmAdapter(getActivity(), filmsList);
         mFilmsList.setAdapter(mFilmsAdapter);
 
-        ContentValues cv = new ContentValues();
-        cv.put(FilmColumns.TITLE, "Hello");
-        getActivity().getContentResolver().insert(FilmsProvider.Films.CONTENT_URI, cv);
-
         Cursor allFilms = getActivity().getContentResolver().query(FilmsProvider.Films.CONTENT_URI, null,
                 null, null, null);
 
-        if (allFilms != null) {
-            while (allFilms.moveToNext()) {
-                System.out.println(allFilms.getString(1));
-            }
-            allFilms.close();
-        }
+
 
         return mLayoutView;
     }
@@ -134,6 +136,14 @@ public class UpcomingFilmsFragment extends Fragment {
         Collections.sort(films, new FilmComparator());
         mFilmsAdapter.addAll(films);
         mFilmsAdapter.notifyDataSetChanged();
+    }
+
+    private void insertFilm(Film film)
+    {
+        ContentValues cv = new ContentValues();
+        String filmJson = JsonUtils.objectToJson(film);
+        cv.put(FilmColumns.FILM, filmJson);
+        getActivity().getContentResolver().insert(FilmsProvider.Films.CONTENT_URI, cv);
     }
 
 }
