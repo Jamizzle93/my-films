@@ -1,15 +1,18 @@
 package com.mysticwater.myfilms.fragments;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.mysticwater.myfilms.FilmDetailActivity;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.model.FilmResults;
@@ -30,6 +33,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.mysticwater.myfilms.fragments.FilmDetailFragment.FILM_ID;
+
 public class UpcomingFilmsFragment extends Fragment {
 
     private View mLayoutView;
@@ -37,6 +42,7 @@ public class UpcomingFilmsFragment extends Fragment {
     // List View
     private ListView mFilmsList;
     private FilmAdapter mFilmsAdapter;
+    private ArrayList<Film> mFilms;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -119,22 +125,31 @@ public class UpcomingFilmsFragment extends Fragment {
 
         // Setup ListView
         mFilmsList = (ListView) mLayoutView.findViewById(R.id.list_upcoming_films);
-        ArrayList<Film> filmsList = new ArrayList<>();
-        mFilmsAdapter = new FilmAdapter(getActivity(), filmsList);
+        mFilms = new ArrayList<>();
+        mFilmsAdapter = new FilmAdapter(getActivity(), mFilms);
         mFilmsList.setAdapter(mFilmsAdapter);
 
-        Cursor allFilms = getActivity().getContentResolver().query(FilmsProvider.Films.CONTENT_URI, null,
-                null, null, null);
-
-
+        mFilmsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Film selectedFilm = mFilms.get(i);
+                if(selectedFilm != null)
+                {
+                    int id = selectedFilm.getId();
+                    openFilmDetail(id);
+                }
+            }
+        });
 
         return mLayoutView;
     }
 
     private void fillList(List<Film> films) {
         mFilmsAdapter.clear();
-        Collections.sort(films, new FilmComparator());
-        mFilmsAdapter.addAll(films);
+        mFilms.clear();
+        mFilms.addAll(films);
+        Collections.sort(mFilms, new FilmComparator());
+        mFilmsAdapter.addAll(mFilms);
         mFilmsAdapter.notifyDataSetChanged();
     }
 
@@ -145,6 +160,14 @@ public class UpcomingFilmsFragment extends Fragment {
         cv.put(FilmColumns.ID, film.getId());
         cv.put(FilmColumns.FILM, filmJson);
         getActivity().getContentResolver().insert(FilmsProvider.Films.CONTENT_URI, cv);
+    }
+
+    private void openFilmDetail(int id)
+    {
+        Intent intent = new Intent(getActivity(), FilmDetailActivity.class);
+        intent.putExtra(FILM_ID, id);
+
+        startActivity(intent);
     }
 
 }

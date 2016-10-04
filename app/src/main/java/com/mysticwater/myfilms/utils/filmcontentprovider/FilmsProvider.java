@@ -6,6 +6,7 @@ import com.mysticwater.myfilms.BuildConfig;
 
 import net.simonvt.schematic.annotation.ContentProvider;
 import net.simonvt.schematic.annotation.ContentUri;
+import net.simonvt.schematic.annotation.InexactContentUri;
 import net.simonvt.schematic.annotation.TableEndpoint;
 
 @ContentProvider(authority = FilmsProvider.AUTHORITY, database = FilmsDatabase.class)
@@ -35,5 +36,6 @@ public final class FilmsProvider {
                 type = "vnd.android.cursor.dir/film",
                 defaultSort = FilmColumns.ID + " ASC")
         public static final Uri CONTENT_URI = buildUri(Path.FILMS);
+
     }
 }
