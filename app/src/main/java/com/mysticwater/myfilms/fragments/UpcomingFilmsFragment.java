@@ -146,7 +146,7 @@ public class UpcomingFilmsFragment extends Fragment {
 
     private void fillList(List<Film> films) {
         mFilmsAdapter.clear();
-        mFilms.clear();
+        mFilms = new ArrayList<>();
         mFilms.addAll(films);
         Collections.sort(mFilms, new FilmComparator());
         mFilmsAdapter.addAll(mFilms);
