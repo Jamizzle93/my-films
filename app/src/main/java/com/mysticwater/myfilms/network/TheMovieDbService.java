@@ -3,11 +3,9 @@ package com.mysticwater.myfilms.network;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.model.FilmResults;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -37,7 +35,7 @@ public interface TheMovieDbService {
 
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/")
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build();
 
 }

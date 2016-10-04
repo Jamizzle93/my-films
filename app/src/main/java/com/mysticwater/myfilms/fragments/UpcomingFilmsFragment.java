@@ -1,5 +1,7 @@
 package com.mysticwater.myfilms.fragments;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +16,9 @@ import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.FilmComparator;
+import com.mysticwater.myfilms.utils.JsonUtils;
+import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
+import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;
 
 import java.util.ArrayList;
@@ -91,8 +96,18 @@ public class UpcomingFilmsFragment extends Fragment {
                 if (films != null) {
                     for (Film film : films.getFilms()) {
                         System.out.println(film.getBackdropPath());
+                        insertFilm(film);
                     }
                     fillList(films.getFilms());
+
+                    Cursor allFilms = getActivity().getContentResolver().query(FilmsProvider.Films.CONTENT_URI, null,
+                            null, null, null);
+                    if (allFilms != null) {
+                        while (allFilms.moveToNext()) {
+                            System.out.println(allFilms.getInt(1));
+                        }
+                        allFilms.close();
+                    }
                 }
             }
 
@@ -108,15 +123,28 @@ public class UpcomingFilmsFragment extends Fragment {
         mFilmsAdapter = new FilmAdapter(getActivity(), filmsList);
         mFilmsList.setAdapter(mFilmsAdapter);
 
+        Cursor allFilms = getActivity().getContentResolver().query(FilmsProvider.Films.CONTENT_URI, null,
+                null, null, null);
+
+
+
         return mLayoutView;
     }
 
-    private void fillList(List<Film> films)
-    {
+    private void fillList(List<Film> films) {
         mFilmsAdapter.clear();
         Collections.sort(films, new FilmComparator());
         mFilmsAdapter.addAll(films);
         mFilmsAdapter.notifyDataSetChanged();
+    }
+
+    private void insertFilm(Film film)
+    {
+        ContentValues cv = new ContentValues();
+        String filmJson = JsonUtils.objectToJson(film);
+        cv.put(FilmColumns.ID, film.getId());
+        cv.put(FilmColumns.FILM, filmJson);
+        getActivity().getContentResolver().insert(FilmsProvider.Films.CONTENT_URI, cv);
     }
 
 }

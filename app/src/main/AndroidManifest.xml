@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mysticwater.myfilms">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -22,6 +22,13 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="e7d17b3e19849d46028c8d03ebb8c0ce2fb9c3d9" />
+
+        <provider
+            android:name=".utils.filmcontentprovider.generated.FilmsProvider"
+            android:authorities="${applicationId}"
+            android:enabled="true"
+            android:exported="false" />
+
     </application>
 
 </manifest>

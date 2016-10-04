@@ -1,42 +1,35 @@
 package com.mysticwater.myfilms.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import javax.annotation.Generated;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "page",
-        "results",
-        "total_results",
-        "total_pages"
-})
+@Generated("org.jsonschema2pojo")
 public class FilmResults {
 
-    @JsonProperty("page")
+    @SerializedName("page")
+    @Expose
     private Integer page;
-    @JsonProperty("results")
+    @SerializedName("results")
+    @Expose
     private List<Film> results = new ArrayList<Film>();
-    @JsonProperty("total_results")
-    private Integer totalFilms;
-    @JsonProperty("total_pages")
+    @SerializedName("dates")
+    @Expose
+    private Dates dates;
+    @SerializedName("total_pages")
+    @Expose
     private Integer totalPages;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    @SerializedName("total_results")
+    @Expose
+    private Integer totalFilms;
 
     /**
      * @return The page
      */
-    @JsonProperty("page")
     public Integer getPage() {
         return page;
     }
@@ -44,7 +37,6 @@ public class FilmResults {
     /**
      * @param page The page
      */
-    @JsonProperty("page")
     public void setPage(Integer page) {
         this.page = page;
     }
@@ -52,7 +44,6 @@ public class FilmResults {
     /**
      * @return The results
      */
-    @JsonProperty("results")
     public List<Film> getFilms() {
         return results;
     }
@@ -60,31 +51,27 @@ public class FilmResults {
     /**
      * @param results The results
      */
-    @JsonProperty("results")
     public void setFilms(List<Film> results) {
         this.results = results;
     }
 
     /**
-     * @return The totalFilms
+     * @return The dates
      */
-    @JsonProperty("total_results")
-    public Integer getTotalFilms() {
-        return totalFilms;
+    public Dates getDates() {
+        return dates;
     }
 
     /**
-     * @param totalFilms The total_results
+     * @param dates The dates
      */
-    @JsonProperty("total_results")
-    public void setTotalFilms(Integer totalFilms) {
-        this.totalFilms = totalFilms;
+    public void setDates(Dates dates) {
+        this.dates = dates;
     }
 
     /**
      * @return The totalPages
      */
-    @JsonProperty("total_pages")
     public Integer getTotalPages() {
         return totalPages;
     }
@@ -92,19 +79,22 @@ public class FilmResults {
     /**
      * @param totalPages The total_pages
      */
-    @JsonProperty("total_pages")
     public void setTotalPages(Integer totalPages) {
         this.totalPages = totalPages;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    /**
+     * @return The totalFilms
+     */
+    public Integer getTotalFilms() {
+        return totalFilms;
     }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    /**
+     * @param totalFilms The total_results
+     */
+    public void setTotalFilms(Integer totalFilms) {
+        this.totalFilms = totalFilms;
     }
 
 }

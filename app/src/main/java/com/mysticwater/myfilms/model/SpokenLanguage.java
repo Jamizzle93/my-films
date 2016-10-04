@@ -1,34 +1,23 @@
 package com.mysticwater.myfilms.model;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.annotation.Generated;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-/**/
-@JsonPropertyOrder({
-        "iso_639_1",
-        "name"
-})
+@Generated("org.jsonschema2pojo")
 public class SpokenLanguage {
 
-    @JsonProperty("iso_639_1")
+    @SerializedName("iso_639_1")
+    @Expose
     private String iso6391;
-    @JsonProperty("name")
+    @SerializedName("name")
+    @Expose
     private String name;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * @return The iso6391
      */
-    @JsonProperty("iso_639_1")
     public String getIso6391() {
         return iso6391;
     }
@@ -36,7 +25,6 @@ public class SpokenLanguage {
     /**
      * @param iso6391 The iso_639_1
      */
-    @JsonProperty("iso_639_1")
     public void setIso6391(String iso6391) {
         this.iso6391 = iso6391;
     }
@@ -44,7 +32,6 @@ public class SpokenLanguage {
     /**
      * @return The name
      */
-    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -52,19 +39,8 @@ public class SpokenLanguage {
     /**
      * @param name The name
      */
-    @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
-    }
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }
