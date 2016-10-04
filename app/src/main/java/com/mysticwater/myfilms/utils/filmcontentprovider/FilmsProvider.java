@@ -1,7 +1,8 @@
 package com.mysticwater.myfilms.utils.filmcontentprovider;
 
 import android.net.Uri;
-import android.support.compat.BuildConfig;
+
+import com.mysticwater.myfilms.BuildConfig;
 
 import net.simonvt.schematic.annotation.ContentProvider;
 import net.simonvt.schematic.annotation.ContentUri;
@@ -32,7 +33,7 @@ public final class FilmsProvider {
         @ContentUri(
                 path = Path.FILMS,
                 type = "vnd.android.cursor.dir/film",
-                defaultSort = FilmColumns.TITLE + " ASC")
+                defaultSort = FilmColumns.FILM + " ASC")
         public static final Uri CONTENT_URI = buildUri(Path.FILMS);
     }
 }
