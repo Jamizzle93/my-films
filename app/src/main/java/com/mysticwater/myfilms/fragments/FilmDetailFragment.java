@@ -5,10 +5,13 @@ import com.google.gson.Gson;
 import android.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mysticwater.myfilms.FilmDetailActivity;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
@@ -48,9 +51,11 @@ public class FilmDetailFragment extends Fragment {
             mFilm = new Gson().fromJson(filmJson, Film.class);
         }
 
-        if (mFilm != null)
-        {
-            System.out.println("SELECTED FILM: " + mFilm.getTitle());
+        if (mFilm != null) {
+            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle(mFilm.getTitle());
+            }
         }
 
         return mLayoutView;

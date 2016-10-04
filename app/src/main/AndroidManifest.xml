@@ -19,8 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".FilmDetailActivity"
-            android:label="A Film"/>
+        <activity android:name=".FilmDetailActivity"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
