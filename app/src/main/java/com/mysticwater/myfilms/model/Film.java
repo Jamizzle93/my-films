@@ -1,109 +1,95 @@
 package com.mysticwater.myfilms.model;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.mysticwater.myfilms.model.BelongsToCollection;
-import com.mysticwater.myfilms.model.Genre;
-import com.mysticwater.myfilms.model.ProductionCompany;
-import com.mysticwater.myfilms.model.ProductionCountry;
-import com.mysticwater.myfilms.model.SpokenLanguage;
+import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "adult",
-        "backdrop_path",
-        "belongs_to_collection",
-        "budget",
-        "genres",
-        "homepage",
-        "id",
-        "imdb_id",
-        "original_language",
-        "original_title",
-        "overview",
-        "popularity",
-        "poster_path",
-        "production_companies",
-        "production_countries",
-        "release_date",
-        "revenue",
-        "runtime",
-        "spoken_languages",
-        "status",
-        "tagline",
-        "title",
-        "video",
-        "vote_average",
-        "vote_count"
-})
+import javax.annotation.Generated;
+
+@Generated("org.jsonschema2pojo")
 public class Film {
-
-    @JsonProperty("adult")
+    @SerializedName("adult")
+    @Expose
     private Boolean adult;
-    @JsonProperty("backdrop_path")
+    @SerializedName("backdrop_path")
+    @Expose
     private String backdropPath;
-    @JsonProperty("belongs_to_collection")
-    private BelongsToCollection belongsToCollection;
-    @JsonProperty("budget")
+    @SerializedName("belongs_to_collection")
+    @Expose
+    private Object belongsToCollection;
+    @SerializedName("budget")
+    @Expose
     private Integer budget;
-    @JsonProperty("genres")
+    @SerializedName("genres")
+    @Expose
     private List<Genre> genres = new ArrayList<Genre>();
-    @JsonProperty("homepage")
+    @SerializedName("homepage")
+    @Expose
     private String homepage;
-    @JsonProperty("id")
+    @SerializedName("id")
+    @Expose
     private Integer id;
-    @JsonProperty("imdb_id")
+    @SerializedName("imdb_id")
+    @Expose
     private String imdbId;
-    @JsonProperty("original_language")
+    @SerializedName("original_language")
+    @Expose
     private String originalLanguage;
-    @JsonProperty("original_title")
+    @SerializedName("original_title")
+    @Expose
     private String originalTitle;
-    @JsonProperty("overview")
+    @SerializedName("overview")
+    @Expose
     private String overview;
-    @JsonProperty("popularity")
+    @SerializedName("popularity")
+    @Expose
     private Double popularity;
-    @JsonProperty("poster_path")
+    @SerializedName("poster_path")
+    @Expose
     private String posterPath;
-    @JsonProperty("production_companies")
+    @SerializedName("production_companies")
+    @Expose
     private List<ProductionCompany> productionCompanies = new ArrayList<ProductionCompany>();
-    @JsonProperty("production_countries")
+    @SerializedName("production_countries")
+    @Expose
     private List<ProductionCountry> productionCountries = new ArrayList<ProductionCountry>();
-    @JsonProperty("release_date")
+    @SerializedName("release_date")
+    @Expose
     private String releaseDate;
-    @JsonProperty("revenue")
+    @SerializedName("revenue")
+    @Expose
     private Integer revenue;
-    @JsonProperty("runtime")
+    @SerializedName("runtime")
+    @Expose
     private Integer runtime;
-    @JsonProperty("spoken_languages")
+    @SerializedName("spoken_languages")
+    @Expose
     private List<SpokenLanguage> spokenLanguages = new ArrayList<SpokenLanguage>();
-    @JsonProperty("status")
+    @SerializedName("status")
+    @Expose
     private String status;
-    @JsonProperty("tagline")
+    @SerializedName("tagline")
+    @Expose
     private String tagline;
-    @JsonProperty("title")
+    @SerializedName("title")
+    @Expose
     private String title;
-    @JsonProperty("video")
+    @SerializedName("video")
+    @Expose
     private Boolean video;
-    @JsonProperty("vote_average")
+    @SerializedName("vote_average")
+    @Expose
     private Double voteAverage;
-    @JsonProperty("vote_count")
+    @SerializedName("vote_count")
+    @Expose
     private Integer voteCount;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * @return The adult
      */
-    @JsonProperty("adult")
     public Boolean getAdult() {
         return adult;
     }
@@ -111,7 +97,6 @@ public class Film {
     /**
      * @param adult The adult
      */
-    @JsonProperty("adult")
     public void setAdult(Boolean adult) {
         this.adult = adult;
     }
@@ -119,7 +104,6 @@ public class Film {
     /**
      * @return The backdropPath
      */
-    @JsonProperty("backdrop_path")
     public String getBackdropPath() {
         return backdropPath;
     }
@@ -127,7 +111,6 @@ public class Film {
     /**
      * @param backdropPath The backdrop_path
      */
-    @JsonProperty("backdrop_path")
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
     }
@@ -135,23 +118,20 @@ public class Film {
     /**
      * @return The belongsToCollection
      */
-    @JsonProperty("belongs_to_collection")
-    public BelongsToCollection getBelongsToCollection() {
+    public Object getBelongsToCollection() {
         return belongsToCollection;
     }
 
     /**
      * @param belongsToCollection The belongs_to_collection
      */
-    @JsonProperty("belongs_to_collection")
-    public void setBelongsToCollection(BelongsToCollection belongsToCollection) {
+    public void setBelongsToCollection(Object belongsToCollection) {
         this.belongsToCollection = belongsToCollection;
     }
 
     /**
      * @return The budget
      */
-    @JsonProperty("budget")
     public Integer getBudget() {
         return budget;
     }
@@ -159,7 +139,6 @@ public class Film {
     /**
      * @param budget The budget
      */
-    @JsonProperty("budget")
     public void setBudget(Integer budget) {
         this.budget = budget;
     }
@@ -167,7 +146,6 @@ public class Film {
     /**
      * @return The genres
      */
-    @JsonProperty("genres")
     public List<Genre> getGenres() {
         return genres;
     }
@@ -175,7 +153,6 @@ public class Film {
     /**
      * @param genres The genres
      */
-    @JsonProperty("genres")
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
@@ -183,7 +160,6 @@ public class Film {
     /**
      * @return The homepage
      */
-    @JsonProperty("homepage")
     public String getHomepage() {
         return homepage;
     }
@@ -191,7 +167,6 @@ public class Film {
     /**
      * @param homepage The homepage
      */
-    @JsonProperty("homepage")
     public void setHomepage(String homepage) {
         this.homepage = homepage;
     }
@@ -199,7 +174,6 @@ public class Film {
     /**
      * @return The id
      */
-    @JsonProperty("id")
     public Integer getId() {
         return id;
     }
@@ -207,7 +181,6 @@ public class Film {
     /**
      * @param id The id
      */
-    @JsonProperty("id")
     public void setId(Integer id) {
         this.id = id;
     }
@@ -215,7 +188,6 @@ public class Film {
     /**
      * @return The imdbId
      */
-    @JsonProperty("imdb_id")
     public String getImdbId() {
         return imdbId;
     }
@@ -223,7 +195,6 @@ public class Film {
     /**
      * @param imdbId The imdb_id
      */
-    @JsonProperty("imdb_id")
     public void setImdbId(String imdbId) {
         this.imdbId = imdbId;
     }
@@ -231,7 +202,6 @@ public class Film {
     /**
      * @return The originalLanguage
      */
-    @JsonProperty("original_language")
     public String getOriginalLanguage() {
         return originalLanguage;
     }
@@ -239,7 +209,6 @@ public class Film {
     /**
      * @param originalLanguage The original_language
      */
-    @JsonProperty("original_language")
     public void setOriginalLanguage(String originalLanguage) {
         this.originalLanguage = originalLanguage;
     }
@@ -247,7 +216,6 @@ public class Film {
     /**
      * @return The originalTitle
      */
-    @JsonProperty("original_title")
     public String getOriginalTitle() {
         return originalTitle;
     }
@@ -255,7 +223,6 @@ public class Film {
     /**
      * @param originalTitle The original_title
      */
-    @JsonProperty("original_title")
     public void setOriginalTitle(String originalTitle) {
         this.originalTitle = originalTitle;
     }
@@ -263,7 +230,6 @@ public class Film {
     /**
      * @return The overview
      */
-    @JsonProperty("overview")
     public String getOverview() {
         return overview;
     }
@@ -271,7 +237,6 @@ public class Film {
     /**
      * @param overview The overview
      */
-    @JsonProperty("overview")
     public void setOverview(String overview) {
         this.overview = overview;
     }
@@ -279,7 +244,6 @@ public class Film {
     /**
      * @return The popularity
      */
-    @JsonProperty("popularity")
     public Double getPopularity() {
         return popularity;
     }
@@ -287,7 +251,6 @@ public class Film {
     /**
      * @param popularity The popularity
      */
-    @JsonProperty("popularity")
     public void setPopularity(Double popularity) {
         this.popularity = popularity;
     }
@@ -295,7 +258,6 @@ public class Film {
     /**
      * @return The posterPath
      */
-    @JsonProperty("poster_path")
     public String getPosterPath() {
         return posterPath;
     }
@@ -303,7 +265,6 @@ public class Film {
     /**
      * @param posterPath The poster_path
      */
-    @JsonProperty("poster_path")
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
     }
@@ -311,7 +272,6 @@ public class Film {
     /**
      * @return The productionCompanies
      */
-    @JsonProperty("production_companies")
     public List<ProductionCompany> getProductionCompanies() {
         return productionCompanies;
     }
@@ -319,7 +279,6 @@ public class Film {
     /**
      * @param productionCompanies The production_companies
      */
-    @JsonProperty("production_companies")
     public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
         this.productionCompanies = productionCompanies;
     }
@@ -327,7 +286,6 @@ public class Film {
     /**
      * @return The productionCountries
      */
-    @JsonProperty("production_countries")
     public List<ProductionCountry> getProductionCountries() {
         return productionCountries;
     }
@@ -335,7 +293,6 @@ public class Film {
     /**
      * @param productionCountries The production_countries
      */
-    @JsonProperty("production_countries")
     public void setProductionCountries(List<ProductionCountry> productionCountries) {
         this.productionCountries = productionCountries;
     }
@@ -343,7 +300,6 @@ public class Film {
     /**
      * @return The releaseDate
      */
-    @JsonProperty("release_date")
     public String getReleaseDate() {
         return releaseDate;
     }
@@ -351,7 +307,6 @@ public class Film {
     /**
      * @param releaseDate The release_date
      */
-    @JsonProperty("release_date")
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
@@ -359,7 +314,6 @@ public class Film {
     /**
      * @return The revenue
      */
-    @JsonProperty("revenue")
     public Integer getRevenue() {
         return revenue;
     }
@@ -367,7 +321,6 @@ public class Film {
     /**
      * @param revenue The revenue
      */
-    @JsonProperty("revenue")
     public void setRevenue(Integer revenue) {
         this.revenue = revenue;
     }
@@ -375,7 +328,6 @@ public class Film {
     /**
      * @return The runtime
      */
-    @JsonProperty("runtime")
     public Integer getRuntime() {
         return runtime;
     }
@@ -383,7 +335,6 @@ public class Film {
     /**
      * @param runtime The runtime
      */
-    @JsonProperty("runtime")
     public void setRuntime(Integer runtime) {
         this.runtime = runtime;
     }
@@ -391,7 +342,6 @@ public class Film {
     /**
      * @return The spokenLanguages
      */
-    @JsonProperty("spoken_languages")
     public List<SpokenLanguage> getSpokenLanguages() {
         return spokenLanguages;
     }
@@ -399,7 +349,6 @@ public class Film {
     /**
      * @param spokenLanguages The spoken_languages
      */
-    @JsonProperty("spoken_languages")
     public void setSpokenLanguages(List<SpokenLanguage> spokenLanguages) {
         this.spokenLanguages = spokenLanguages;
     }
@@ -407,7 +356,6 @@ public class Film {
     /**
      * @return The status
      */
-    @JsonProperty("status")
     public String getStatus() {
         return status;
     }
@@ -415,7 +363,6 @@ public class Film {
     /**
      * @param status The status
      */
-    @JsonProperty("status")
     public void setStatus(String status) {
         this.status = status;
     }
@@ -423,7 +370,6 @@ public class Film {
     /**
      * @return The tagline
      */
-    @JsonProperty("tagline")
     public String getTagline() {
         return tagline;
     }
@@ -431,7 +377,6 @@ public class Film {
     /**
      * @param tagline The tagline
      */
-    @JsonProperty("tagline")
     public void setTagline(String tagline) {
         this.tagline = tagline;
     }
@@ -439,7 +384,6 @@ public class Film {
     /**
      * @return The title
      */
-    @JsonProperty("title")
     public String getTitle() {
         return title;
     }
@@ -447,7 +391,6 @@ public class Film {
     /**
      * @param title The title
      */
-    @JsonProperty("title")
     public void setTitle(String title) {
         this.title = title;
     }
@@ -455,7 +398,6 @@ public class Film {
     /**
      * @return The video
      */
-    @JsonProperty("video")
     public Boolean getVideo() {
         return video;
     }
@@ -463,7 +405,6 @@ public class Film {
     /**
      * @param video The video
      */
-    @JsonProperty("video")
     public void setVideo(Boolean video) {
         this.video = video;
     }
@@ -471,7 +412,6 @@ public class Film {
     /**
      * @return The voteAverage
      */
-    @JsonProperty("vote_average")
     public Double getVoteAverage() {
         return voteAverage;
     }
@@ -479,7 +419,6 @@ public class Film {
     /**
      * @param voteAverage The vote_average
      */
-    @JsonProperty("vote_average")
     public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
     }
@@ -487,7 +426,6 @@ public class Film {
     /**
      * @return The voteCount
      */
-    @JsonProperty("vote_count")
     public Integer getVoteCount() {
         return voteCount;
     }
@@ -495,19 +433,13 @@ public class Film {
     /**
      * @param voteCount The vote_count
      */
-    @JsonProperty("vote_count")
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    public Film(String json)
+    {
+        Gson gson = new Gson();
+        gson.fromJson(json, Film.class);
     }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }
