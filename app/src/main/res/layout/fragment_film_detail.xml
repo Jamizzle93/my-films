@@ -25,6 +25,14 @@
             android:textSize="24sp"
             tools:text="Star Wars: The Force Awakens" />
 
+        <TextView
+            android:id="@+id/film_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_title"
+            android:maxLines="4"
+            android:ellipsize="end"/>
+
     </RelativeLayout>
 
 </LinearLayout>
