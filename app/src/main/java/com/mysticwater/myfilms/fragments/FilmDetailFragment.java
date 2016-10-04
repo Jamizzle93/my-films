@@ -10,11 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.mysticwater.myfilms.FilmDetailActivity;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider.Films.CONTENT_URI;
 
@@ -22,7 +27,9 @@ public class FilmDetailFragment extends Fragment {
 
     private static final String LOG_TAG = "FilmDetailFragment";
 
-    private View mLayoutView;
+    // UI Elements
+    @BindView(R.id.film_backdrop) ImageView filmBackdrop;
+    @BindView(R.id.film_title) TextView filmTitle;
 
     // Bundle strings
     public static final String FILM_ID = "FilmId";
@@ -31,7 +38,8 @@ public class FilmDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mLayoutView = inflater.inflate(R.layout.fragment_upcoming_films, container, false);
+        View view = inflater.inflate(R.layout.fragment_film_detail, container, false);
+        ButterKnife.bind(this, view);
 
         Bundle filmBundle = getArguments();
         int id = filmBundle.getInt(FILM_ID);
@@ -56,9 +64,11 @@ public class FilmDetailFragment extends Fragment {
             if (actionBar != null) {
                 actionBar.setTitle(mFilm.getTitle());
             }
+
+            filmTitle.setText(mFilm.getTitle());
         }
 
-        return mLayoutView;
+        return view;
     }
 
 }
