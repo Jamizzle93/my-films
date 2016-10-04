@@ -104,7 +104,7 @@ public class UpcomingFilmsFragment extends Fragment {
                             null, null, null);
                     if (allFilms != null) {
                         while (allFilms.moveToNext()) {
-                            System.out.println(allFilms.getString(1));
+                            System.out.println(allFilms.getInt(1));
                         }
                         allFilms.close();
                     }
@@ -142,6 +142,7 @@ public class UpcomingFilmsFragment extends Fragment {
     {
         ContentValues cv = new ContentValues();
         String filmJson = JsonUtils.objectToJson(film);
+        cv.put(FilmColumns.ID, film.getId());
         cv.put(FilmColumns.FILM, filmJson);
         getActivity().getContentResolver().insert(FilmsProvider.Films.CONTENT_URI, cv);
     }

@@ -9,5 +9,6 @@ import net.simonvt.schematic.annotation.Table;
 
 public interface FilmColumns {
     @DataType(DataType.Type.INTEGER) @PrimaryKey @AutoIncrement String _ID = "_id";
-    @DataType(DataType.Type.TEXT) String FILM = "film";
+    @DataType(DataType.Type.INTEGER) String ID = "filmId";
+    @DataType(DataType.Type.TEXT) String FILM = "filmJson";
 }

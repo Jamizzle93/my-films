@@ -33,7 +33,7 @@ public final class FilmsProvider {
         @ContentUri(
                 path = Path.FILMS,
                 type = "vnd.android.cursor.dir/film",
-                defaultSort = FilmColumns.FILM + " ASC")
+                defaultSort = FilmColumns.ID + " ASC")
         public static final Uri CONTENT_URI = buildUri(Path.FILMS);
     }
 }
