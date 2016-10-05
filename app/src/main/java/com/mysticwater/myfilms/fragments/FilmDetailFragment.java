@@ -18,6 +18,7 @@ import com.jakewharton.picasso.OkHttp3Downloader;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
+import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
 import com.squareup.picasso.Picasso;
 
@@ -37,6 +38,7 @@ public class FilmDetailFragment extends Fragment {
     @BindView(R.id.film_backdrop) ImageView filmBackdrop;
     @BindView(R.id.film_title) TextView filmTitle;
     @BindView(R.id.film_overview_text) ExpandableTextView filmOverview;
+    @BindView(R.id.film_release_date_text) TextView filmReleaseDate;
 
     // Bundle strings
     public static final String FILM_ID = "FilmId";
@@ -100,6 +102,11 @@ public class FilmDetailFragment extends Fragment {
 
             // Load the description
             filmOverview.setText(mFilm.getOverview());
+
+            // Load the release date
+            String releaseDate = CalendarUtils.convertDateToLocale(getActivity(), mFilm
+                    .getReleaseDate());
+            filmReleaseDate.setText(releaseDate);
         }
 
         return view;

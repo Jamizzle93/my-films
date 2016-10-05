@@ -80,24 +80,6 @@
                 android:layout_marginTop="@dimen/spacing_tiny"
                 tools:text="25/05/2016" />
 
-            <TextView
-                android:id="@+id/film_runtime_label"
-                style="@style/bold_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/film_release_date_text"
-                android:layout_marginTop="@dimen/spacing_small"
-                android:text="@string/label_release_date" />
-
-            <TextView
-                android:id="@+id/film_runtime_text"
-                style="@style/normal_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/film_runtime_label"
-                android:layout_marginTop="@dimen/spacing_tiny"
-                tools:text="2 hours 45 minutes" />
-
         </RelativeLayout>
 
     </LinearLayout>
