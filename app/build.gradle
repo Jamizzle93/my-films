@@ -69,4 +69,5 @@ dependencies {
     compile group: 'javax.annotation', name: 'jsr250-api', version: '1.0'
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.ms-square:expandableTextView:0.1.4'
 }

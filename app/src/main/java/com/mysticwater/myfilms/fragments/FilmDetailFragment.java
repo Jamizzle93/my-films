@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jakewharton.picasso.OkHttp3Downloader;
+import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
@@ -35,7 +36,7 @@ public class FilmDetailFragment extends Fragment {
     // UI Elements
     @BindView(R.id.film_backdrop) ImageView filmBackdrop;
     @BindView(R.id.film_title) TextView filmTitle;
-    @BindView(R.id.film_overview) TextView filmOverview;
+    @BindView(R.id.film_overview_text) ExpandableTextView filmOverview;
 
     // Bundle strings
     public static final String FILM_ID = "FilmId";
