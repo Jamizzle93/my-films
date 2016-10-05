@@ -69,7 +69,7 @@ public class FilmDetailFragment extends Fragment {
         if (mFilm != null) {
             ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
-                actionBar.setTitle(mFilm.getTitle());
+                actionBar.setTitle("");
             }
 
             // Load in the backdrop
