@@ -15,9 +15,5 @@
     <style name="normal_text">
         <item name="android:textSize">@dimen/font_normal</item>
     </style>
-
-    <style name="expandable_text" parent="normal_text">
-
-    </style>
     
 </resources>

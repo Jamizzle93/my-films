@@ -49,7 +49,7 @@
 
                 <TextView
                     android:id="@+id/expandable_text"
-                    style="@style/expandable_text"
+                    style="@style/normal_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
