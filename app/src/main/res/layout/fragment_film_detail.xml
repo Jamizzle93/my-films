@@ -9,20 +9,19 @@
         android:id="@+id/film_backdrop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="fitStart" />
+        style="@style/image_backdrop" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_margin="@dimen/spacing_normal">
 
         <TextView
             android:id="@+id/film_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:textSize="24sp"
+            style="@style/title_text"
             tools:text="Star Wars: The Force Awakens" />
 
         <TextView
@@ -30,8 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/film_title"
-            android:maxLines="4"
-            android:ellipsize="end"/>
+            style="@style/expandable_text"/>
 
     </RelativeLayout>
 

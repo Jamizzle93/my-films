@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="title_text">
+        <item name="android:lines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/font_large</item>
+    </style>
+
+    <style name="bold_text">
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="normal_text">
+        <item name="android:textSize">@dimen/font_normal</item>
+    </style>
+
+    <style name="expandable_text" parent="normal_text">
+
+    </style>
+    
+</resources>
