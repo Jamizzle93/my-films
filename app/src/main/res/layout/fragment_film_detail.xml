@@ -34,8 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/film_title"
-                android:layout_marginTop="@dimen/spacing_small"
-                android:text="Overview" />
+                android:text="@string/label_overview" />
 
 
             <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,6 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/film_overview_label"
+                android:layout_marginTop="@dimen/spacing_tiny"
                 expandableTextView:animDuration="200"
                 expandableTextView:maxCollapsedLines="4">
 
@@ -61,6 +61,42 @@
                     android:background="@android:color/transparent"
                     android:padding="16dp" />
             </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+            <TextView
+                android:id="@+id/film_release_date_label"
+                style="@style/bold_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/film_overview_text"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/label_release_date" />
+
+            <TextView
+                android:id="@+id/film_release_date_text"
+                style="@style/normal_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/film_release_date_label"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                tools:text="25/05/2016" />
+
+            <TextView
+                android:id="@+id/film_runtime_label"
+                style="@style/bold_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/film_release_date_text"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/label_release_date" />
+
+            <TextView
+                android:id="@+id/film_runtime_text"
+                style="@style/normal_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/film_runtime_label"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                tools:text="2 hours 45 minutes" />
 
         </RelativeLayout>
 

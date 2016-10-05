@@ -29,7 +29,7 @@
         android:layout_below="@+id/row_upcoming_title_text"
         android:layout_marginStart="4dp"
         android:layout_toEndOf="@+id/row_upcoming_poster_image"
-        android:text="@string/label_release_date" />
+        android:text="@string/label_release_date_colon" />
 
     <TextView
         android:id="@+id/row_upcoming_release_text"
