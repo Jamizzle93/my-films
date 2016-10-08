@@ -11,9 +11,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.mysticwater.myfilms.R;
@@ -39,6 +41,7 @@ public class FilmDetailFragment extends Fragment {
     @BindView(R.id.film_title) TextView filmTitle;
     @BindView(R.id.film_overview_text) ExpandableTextView filmOverview;
     @BindView(R.id.film_release_date_text) TextView filmReleaseDate;
+    @BindView(R.id.film_favourite_button) MaterialFavoriteButton favouriteFilm;
 
     // Bundle strings
     public static final String FILM_ID = "FilmId";
@@ -108,6 +111,17 @@ public class FilmDetailFragment extends Fragment {
                     .getReleaseDate());
             filmReleaseDate.setText(releaseDate);
         }
+
+        // Handle favouriting
+
+        favouriteFilm = new MaterialFavoriteButton.Builder(getActivity()).create();
+        favouriteFilm.setOnFavoriteChangeListener(
+                new MaterialFavoriteButton.OnFavoriteChangeListener() {
+                    @Override
+                    public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+                        System.out.println("Favourite changed.");
+                    }
+                });
 
         return view;
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -29,12 +30,19 @@
                 android:layout_toStartOf="@+id/film_favourite_button"
                 tools:text="Star Wars: The Force Awakens" />
 
-            <ImageView
+            <com.github.ivbaranov.mfb.MaterialFavoriteButton
                 android:id="@+id/film_favourite_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_star_gold_24dp" />
+                app:mfb_animate_favorite="true"
+                app:mfb_animate_unfavorite="false"
+                app:mfb_bounce_duration="300"
+                app:mfb_color="black"
+                app:mfb_padding="12"
+                app:mfb_rotation_angle="360"
+                app:mfb_rotation_duration="400"
+                app:mfb_type="star" />
 
             <TextView
                 android:id="@+id/film_overview_label"
