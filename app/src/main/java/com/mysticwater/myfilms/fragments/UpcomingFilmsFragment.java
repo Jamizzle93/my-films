@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.mysticwater.myfilms.FilmDetailActivity;
 import com.mysticwater.myfilms.R;
@@ -40,9 +40,9 @@ public class UpcomingFilmsFragment extends Fragment {
     private View mLayoutView;
 
     // List View
-    private ListView mFilmsList;
+    private RecyclerView mFilmsRecyclerView;
     private FilmAdapter mFilmsAdapter;
-    private ArrayList<Film> mFilms;
+    private List<Film> mFilms;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -124,37 +124,22 @@ public class UpcomingFilmsFragment extends Fragment {
         });
 
         // Setup ListView
-        mFilmsList = (ListView) mLayoutView.findViewById(R.id.list_upcoming_films);
-        mFilms = new ArrayList<>();
-        mFilmsAdapter = new FilmAdapter(getActivity(), mFilms);
-        mFilmsList.setAdapter(mFilmsAdapter);
-
-        mFilmsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Film selectedFilm = mFilms.get(i);
-                if(selectedFilm != null)
-                {
-                    int id = selectedFilm.getId();
-                    openFilmDetail(id);
-                }
-            }
-        });
+        mFilmsRecyclerView = (RecyclerView) mLayoutView.findViewById(R.id.list_upcoming_films);
+        List<Film> films = new ArrayList<>();
+        mFilmsAdapter = new FilmAdapter(getActivity(), films);
+        mFilmsRecyclerView.setAdapter(mFilmsAdapter);
+        mFilmsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return mLayoutView;
     }
 
     private void fillList(List<Film> films) {
-        mFilmsAdapter.clear();
-        mFilms = new ArrayList<>();
-        mFilms.addAll(films);
+        mFilms = films;
         Collections.sort(mFilms, new FilmComparator());
-        mFilmsAdapter.addAll(mFilms);
-        mFilmsAdapter.notifyDataSetChanged();
+        mFilmsAdapter.updateData(films);
     }
 
-    private void insertFilm(Film film)
-    {
+    private void insertFilm(Film film) {
         ContentValues cv = new ContentValues();
         String filmJson = JsonUtils.objectToJson(film);
         cv.put(FilmColumns.ID, film.getId());
@@ -162,12 +147,5 @@ public class UpcomingFilmsFragment extends Fragment {
         getActivity().getContentResolver().insert(FilmsProvider.Films.CONTENT_URI, cv);
     }
 
-    private void openFilmDetail(int id)
-    {
-        Intent intent = new Intent(getActivity(), FilmDetailActivity.class);
-        intent.putExtra(FILM_ID, id);
-
-        startActivity(intent);
-    }
 
 }
