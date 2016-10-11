@@ -11,12 +11,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
-import com.jakewharton.picasso.OkHttp3Downloader;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
@@ -24,11 +22,8 @@ import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
 import com.squareup.picasso.Picasso;
 
-import java.util.concurrent.TimeUnit;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.OkHttpClient;
 
 import static com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider.Films.CONTENT_URI;
 
@@ -37,11 +32,16 @@ public class FilmDetailFragment extends Fragment {
     private static final String LOG_TAG = "FilmDetailFragment";
 
     // UI Elements
-    @BindView(R.id.film_backdrop) ImageView filmBackdrop;
-    @BindView(R.id.film_title) TextView filmTitle;
-    @BindView(R.id.film_overview_text) ExpandableTextView filmOverview;
-    @BindView(R.id.film_release_date_text) TextView filmReleaseDate;
-    @BindView(R.id.film_favourite_button) MaterialFavoriteButton favouriteFilm;
+    @BindView(R.id.film_backdrop)
+    ImageView filmBackdrop;
+    @BindView(R.id.film_title)
+    TextView filmTitle;
+    @BindView(R.id.film_overview_text)
+    ExpandableTextView filmOverview;
+    @BindView(R.id.film_release_date_text)
+    TextView filmReleaseDate;
+    @BindView(R.id.film_favourite_button)
+    MaterialFavoriteButton favouriteFilm;
 
     // Bundle strings
     public static final String FILM_ID = "FilmId";
@@ -88,9 +88,7 @@ public class FilmDetailFragment extends Fragment {
                         .load(imageUri)
                         .tag(getActivity())
                         .into(filmBackdrop);
-            }
-            else
-            {
+            } else {
                 filmBackdrop.setImageResource(0);
             }
 
