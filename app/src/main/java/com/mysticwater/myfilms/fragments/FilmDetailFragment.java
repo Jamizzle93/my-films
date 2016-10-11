@@ -32,8 +32,6 @@ public class FilmDetailFragment extends Fragment {
     private static final String LOG_TAG = "FilmDetailFragment";
 
     // UI Elements
-    @BindView(R.id.film_backdrop)
-    ImageView filmBackdrop;
     @BindView(R.id.film_title)
     TextView filmTitle;
     @BindView(R.id.film_overview_text)
@@ -74,22 +72,7 @@ public class FilmDetailFragment extends Fragment {
         if (mFilm != null) {
             ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
-                actionBar.setTitle("");
-            }
-
-            // Load in the backdrop
-            String backdropPath = mFilm.getBackdropPath();
-            if (!TextUtils.isEmpty(backdropPath)) {
-                String imageUri = getString(R.string.moviedb_backdrop_w1280_url, backdropPath);
-
-                Picasso.Builder builder = new Picasso.Builder(getActivity());
-                builder.indicatorsEnabled(true);
-                builder.build()
-                        .load(imageUri)
-                        .tag(getActivity())
-                        .into(filmBackdrop);
-            } else {
-                filmBackdrop.setImageResource(0);
+                actionBar.setTitle(mFilm.getTitle());
             }
 
             // Load the title
