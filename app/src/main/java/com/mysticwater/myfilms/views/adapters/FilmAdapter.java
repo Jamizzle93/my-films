@@ -64,20 +64,15 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
 
         String posterPath = film.getPosterPath();
         if (!TextUtils.isEmpty(posterPath)) {
-            // TODO - Update after new release of Picasso
             String imageUri = mContext.getString(R.string.moviedb_image_w500_url, posterPath);
 
-            OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .build();
-
             Picasso.Builder builder = new Picasso.Builder(mContext);
+            builder.indicatorsEnabled(true);
 
             int pixelWidth = dpToPixels(100);
             int pixelHeight = dpToPixels(150);
 
-            builder.downloader(new OkHttp3Downloader(okHttpClient))
-                    .build()
+            builder.build()
                     .load(imageUri)
                     .resize(pixelWidth, pixelHeight)
                     .centerCrop()

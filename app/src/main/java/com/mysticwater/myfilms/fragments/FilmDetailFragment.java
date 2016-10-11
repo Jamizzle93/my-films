@@ -80,17 +80,11 @@ public class FilmDetailFragment extends Fragment {
             // Load in the backdrop
             String backdropPath = mFilm.getBackdropPath();
             if (!TextUtils.isEmpty(backdropPath)) {
-                // TODO - Update after new release of Picasso
                 String imageUri = getString(R.string.moviedb_backdrop_w1280_url, backdropPath);
 
-                OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                        .connectTimeout(10, TimeUnit.SECONDS)
-                        .build();
-
                 Picasso.Builder builder = new Picasso.Builder(getActivity());
-
-                builder.downloader(new OkHttp3Downloader(okHttpClient))
-                        .build()
+                builder.indicatorsEnabled(true);
+                builder.build()
                         .load(imageUri)
                         .tag(getActivity())
                         .into(filmBackdrop);
