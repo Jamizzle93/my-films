@@ -1,5 +1,7 @@
 package com.mysticwater.myfilms.fragments;
 
+import com.google.gson.Gson;
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -46,7 +48,10 @@ public class UpcomingFilmsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         mLayoutView = inflater.inflate(R.layout.fragment_upcoming_films, container, false);
+
+        mFilms = new ArrayList<>();
 
         TheMovieDbService theMovieDbService = TheMovieDbService.retrofit.create(TheMovieDbService.class);
         final Call<Film> filmCall = theMovieDbService.film("76341", getString(R.string.moviedb_api_key));
@@ -100,26 +105,19 @@ public class UpcomingFilmsFragment extends Fragment {
             public void onResponse(Call<FilmResults> call, Response<FilmResults> response) {
                 FilmResults films = response.body();
                 if (films != null) {
+                    deleteAllFilms();
                     for (Film film : films.getFilms()) {
-                        System.out.println(film.getBackdropPath());
                         insertFilm(film);
                     }
-                    fillList(films.getFilms());
+                    fillList();
 
-                    Cursor allFilms = getActivity().getContentResolver().query(FilmsProvider.Films.CONTENT_URI, null,
-                            null, null, null);
-                    if (allFilms != null) {
-                        while (allFilms.moveToNext()) {
-                            System.out.println(allFilms.getInt(1));
-                        }
-                        allFilms.close();
-                    }
+
                 }
             }
 
             @Override
             public void onFailure(Call<FilmResults> call, Throwable t) {
-                t.printStackTrace();
+                fillList();
             }
         });
 
@@ -133,10 +131,22 @@ public class UpcomingFilmsFragment extends Fragment {
         return mLayoutView;
     }
 
-    private void fillList(List<Film> films) {
-        mFilms = films;
+    private void fillList() {
+        mFilms.clear();
+
+        Cursor allFilms = getActivity().getContentResolver().query(FilmsProvider.Films.CONTENT_URI, null,
+                null, null, null);
+        if (allFilms != null) {
+            while (allFilms.moveToNext()) {
+                String filmJson = allFilms.getString(allFilms.getColumnIndex(FilmColumns.FILM));
+                Film film = new Gson().fromJson(filmJson, Film.class);
+                mFilms.add(film);
+            }
+            allFilms.close();
+        }
+
         Collections.sort(mFilms, new FilmComparator());
-        mFilmsAdapter.updateData(films);
+        mFilmsAdapter.updateData(mFilms);
     }
 
     private void insertFilm(Film film) {
@@ -145,6 +155,11 @@ public class UpcomingFilmsFragment extends Fragment {
         cv.put(FilmColumns.ID, film.getId());
         cv.put(FilmColumns.FILM, filmJson);
         getActivity().getContentResolver().insert(FilmsProvider.Films.CONTENT_URI, cv);
+    }
+
+    private void deleteAllFilms()
+    {
+        getActivity().getContentResolver().delete(FilmsProvider.Films.CONTENT_URI, "1", null);
     }
 
 
