@@ -35,16 +35,15 @@ public class FilmDetailActivity extends AppCompatActivity {
         if (mToolbar != null)
         {
             setSupportActionBar(mToolbar);
-            mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-            mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    finish();
-                }
-            });
-            mToolbar.set
+//            mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+//            mToolbar.setNavigationOnClickListener(new View.OnClickListener()
+//            {
+//                @Override
+//                public void onClick(View v)
+//                {
+//                    finish();
+//                }
+//            });
         }
 
         if (getIntent().hasExtra(FILM_ID)) {

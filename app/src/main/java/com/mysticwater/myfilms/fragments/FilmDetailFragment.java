@@ -73,6 +73,7 @@ public class FilmDetailFragment extends Fragment {
             ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setTitle(mFilm.getTitle());
+                actionBar.setDisplayHomeAsUpEnabled(true);
             }
 
             // Load the title
