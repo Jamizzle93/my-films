@@ -7,11 +7,10 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
@@ -20,7 +19,6 @@ import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
-import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,8 +70,7 @@ public class FilmDetailFragment extends Fragment {
         if (mFilm != null) {
             ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
-                actionBar.setTitle(mFilm.getTitle());
-                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setTitle("");
             }
 
             // Load the title
@@ -89,7 +86,6 @@ public class FilmDetailFragment extends Fragment {
         }
 
         // Handle favouriting
-
         favouriteFilm = new MaterialFavoriteButton.Builder(getActivity()).create();
         favouriteFilm.setOnFavoriteChangeListener(
                 new MaterialFavoriteButton.OnFavoriteChangeListener() {
@@ -100,6 +96,17 @@ public class FilmDetailFragment extends Fragment {
                 });
 
         return view;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home: {
+                getActivity().onBackPressed();
+                return true;
+            }
+        }
+        return (super.onOptionsItemSelected(menuItem));
     }
 
 }

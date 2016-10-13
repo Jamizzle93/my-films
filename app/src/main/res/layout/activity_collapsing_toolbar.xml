@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="false">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -33,9 +33,9 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/film_detail_toolbar"
                 android:layout_width="match_parent"
-                android:fitsSystemWindows="true"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"/>
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="pin" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -49,9 +49,9 @@
 
         <FrameLayout
             android:id="@+id/container"
-            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true" />
 
     </android.support.v4.widget.NestedScrollView>
 

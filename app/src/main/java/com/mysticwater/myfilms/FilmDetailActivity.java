@@ -24,26 +24,24 @@ public class FilmDetailActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
 
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_collapsing_toolbar);
 
         // Setup toolbar
         mToolbar = (Toolbar) findViewById(R.id.film_detail_toolbar);
-        if (mToolbar != null)
-        {
+        if (mToolbar != null) {
             setSupportActionBar(mToolbar);
-//            mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-//            mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-//            {
-//                @Override
-//                public void onClick(View v)
-//                {
-//                    finish();
-//                }
-//            });
+            mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+            mToolbar.setNavigationOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    onBackPressed();
+                }
+            });
         }
 
         if (getIntent().hasExtra(FILM_ID)) {
@@ -68,9 +66,8 @@ public class FilmDetailActivity extends AppCompatActivity {
                 film = new Gson().fromJson(filmJson, Film.class);
             }
 
-            if (film != null)
-            {
-                ImageView toolbarImage = (ImageView)findViewById(R.id.film_backdrop);
+            if (film != null) {
+                ImageView toolbarImage = (ImageView) findViewById(R.id.film_backdrop);
                 String backdropPath = film.getBackdropPath();
                 if (!TextUtils.isEmpty(backdropPath)) {
                     String imageUri = getString(R.string.moviedb_backdrop_w1280_url, backdropPath);
@@ -94,13 +91,14 @@ public class FilmDetailActivity extends AppCompatActivity {
         }
     }
 
-    public void updateToolbarTitle(String title)
-    {
-        if (mToolbar != null) {
-            mToolbar.setTitle(title);
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() == 0) {
+            super.onBackPressed();
+        } else {
+            getFragmentManager().popBackStack();
         }
     }
-
 
 
 }
