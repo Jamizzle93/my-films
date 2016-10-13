@@ -8,10 +8,10 @@ import android.text.TextUtils;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.utils.JsonUtils;
 
-public class FilmsDbHelper {
+public class UpcomingFilmsDbHelper {
 
     public static Cursor getAllFilms(Context context) {
-        return context.getContentResolver().query(FilmsProvider.Films.CONTENT_URI, null,
+        return context.getContentResolver().query(FilmsProvider.UpcomingFilms.CONTENT_URI, null,
                 null, null, null);
     }
 
@@ -21,7 +21,7 @@ public class FilmsDbHelper {
             String filmJson = JsonUtils.objectToJson(film);
             cv.put(FilmColumns.ID, film.getId());
             cv.put(FilmColumns.FILM, filmJson);
-            context.getContentResolver().insert(FilmsProvider.Films.CONTENT_URI, cv);
+            context.getContentResolver().insert(FilmsProvider.UpcomingFilms.CONTENT_URI, cv);
         }
     }
 

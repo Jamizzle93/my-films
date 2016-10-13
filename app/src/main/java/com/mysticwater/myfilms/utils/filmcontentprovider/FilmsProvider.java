@@ -6,7 +6,6 @@ import com.mysticwater.myfilms.BuildConfig;
 
 import net.simonvt.schematic.annotation.ContentProvider;
 import net.simonvt.schematic.annotation.ContentUri;
-import net.simonvt.schematic.annotation.InexactContentUri;
 import net.simonvt.schematic.annotation.TableEndpoint;
 
 @ContentProvider(authority = FilmsProvider.AUTHORITY, database = FilmsDatabase.class)
@@ -17,7 +16,8 @@ public final class FilmsProvider {
     static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 
     interface Path {
-        String FILMS = "films";
+        String UPCOMING_FILMS = "UpcomingFilms";
+        String FAVOURITE_FILMS = "FavouriteFilms";
     }
 
     private static Uri buildUri(String... paths) {
@@ -28,14 +28,24 @@ public final class FilmsProvider {
         return builder.build();
     }
 
-    @TableEndpoint(table = FilmsDatabase.FILMS)
-    public static class Films
+    @TableEndpoint(table = FilmsDatabase.UPCOMING_FILMS)
+    public static class UpcomingFilms
     {
         @ContentUri(
-                path = Path.FILMS,
+                path = Path.UPCOMING_FILMS,
                 type = "vnd.android.cursor.dir/film",
                 defaultSort = FilmColumns.ID + " ASC")
-        public static final Uri CONTENT_URI = buildUri(Path.FILMS);
+        public static final Uri CONTENT_URI = buildUri(Path.UPCOMING_FILMS);
 
+    }
+
+    @TableEndpoint(table = FilmsDatabase.FAVOURITE_FILMS)
+    public static class FavouriteFilms
+    {
+        @ContentUri(
+                path = Path.FAVOURITE_FILMS,
+                type = "vnd.android.cursor.dir/film",
+                defaultSort = FilmColumns.ID + " ASC")
+        public static final Uri CONTENT_URI = buildUri(Path.FAVOURITE_FILMS);
     }
 }

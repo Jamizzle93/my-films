@@ -2,8 +2,6 @@ package com.mysticwater.myfilms.fragments;
 
 import com.google.gson.Gson;
 
-import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,18 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
-import com.mysticwater.myfilms.FilmDetailActivity;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.FilmComparator;
-import com.mysticwater.myfilms.utils.JsonUtils;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
-import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
+import com.mysticwater.myfilms.utils.filmcontentprovider.UpcomingFilmsDbHelper;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;
 
@@ -35,8 +30,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.mysticwater.myfilms.fragments.FilmDetailFragment.FILM_ID;
 
 public class UpcomingFilmsFragment extends Fragment {
 
@@ -73,7 +66,7 @@ public class UpcomingFilmsFragment extends Fragment {
                 if (films != null) {
                     deleteAllFilms();
                     for (Film film : films.getFilms()) {
-                        FilmsDbHelper.insertFilm(getActivity(), film);
+                        UpcomingFilmsDbHelper.insertFilm(getActivity(), film);
                     }
                     fillList();
                 }
@@ -98,7 +91,7 @@ public class UpcomingFilmsFragment extends Fragment {
     private void fillList() {
         mFilms.clear();
 
-        Cursor allFilms = FilmsDbHelper.getAllFilms(getActivity());
+        Cursor allFilms = UpcomingFilmsDbHelper.getAllFilms(getActivity());
         if (allFilms != null) {
             while (allFilms.moveToNext()) {
                 String filmJson = allFilms.getString(allFilms.getColumnIndex(FilmColumns.FILM));
@@ -114,7 +107,7 @@ public class UpcomingFilmsFragment extends Fragment {
 
     private void deleteAllFilms()
     {
-        getActivity().getContentResolver().delete(FilmsProvider.Films.CONTENT_URI, "1", null);
+        getActivity().getContentResolver().delete(FilmsProvider.UpcomingFilms.CONTENT_URI, "1", null);
     }
 
 

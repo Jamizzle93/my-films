@@ -23,7 +23,7 @@ import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider.Films.CONTENT_URI;
+import static com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider.UpcomingFilms.CONTENT_URI;
 
 public class FilmDetailFragment extends Fragment {
 
