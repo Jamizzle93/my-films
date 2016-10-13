@@ -3,6 +3,7 @@
 
     <!-- Tab names -->
     <string name="tab_upcoming">Upcoming</string>
+    <string name="tab_favourite">Favourite</string>
 
     <!-- Labels -->
     <string name="label_release_date_colon">Release Date:</string>

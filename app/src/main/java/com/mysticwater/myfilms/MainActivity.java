@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.mysticwater.myfilms.fragments.FavouriteFilmsFragment;
 import com.mysticwater.myfilms.fragments.UpcomingFilmsFragment;
 
 import io.fabric.sdk.android.Fabric;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         //TODO - Add fragments
         adapter.addFragment(new UpcomingFilmsFragment(), getString(R.string.tab_upcoming));
+        adapter.addFragment(new FavouriteFilmsFragment(), getString(R.string.tab_favourite));
         viewPager.setAdapter(adapter);
     }
 

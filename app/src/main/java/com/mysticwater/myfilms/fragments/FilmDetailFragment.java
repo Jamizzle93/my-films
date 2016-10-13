@@ -1,9 +1,6 @@
 package com.mysticwater.myfilms.fragments;
 
-import com.google.gson.Gson;
-
 import android.app.Fragment;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,12 +15,10 @@ import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.utils.CalendarUtils;
-import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
+import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider.UpcomingFilms.CONTENT_URI;
 
 public class FilmDetailFragment extends Fragment {
 
@@ -52,20 +47,7 @@ public class FilmDetailFragment extends Fragment {
         Bundle filmBundle = getArguments();
         int id = filmBundle.getInt(FILM_ID);
 
-        String[] selectionArgs = new String[]{String.valueOf(id)};
-        Cursor allFilms = getActivity().getContentResolver().query(
-                CONTENT_URI,
-                null,
-                FilmColumns.ID + " = ?",
-                selectionArgs,
-                null
-        );
-
-        if (allFilms != null) {
-            allFilms.moveToFirst();
-            String filmJson = allFilms.getString(allFilms.getColumnIndex(FilmColumns.FILM));
-            mFilm = new Gson().fromJson(filmJson, Film.class);
-        }
+        mFilm = FilmsDbHelper.getFilm(getActivity(), id);
 
         if (mFilm != null) {
             ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
@@ -83,17 +65,20 @@ public class FilmDetailFragment extends Fragment {
             String releaseDate = CalendarUtils.convertDateToLocale(getActivity(), mFilm
                     .getReleaseDate());
             filmReleaseDate.setText(releaseDate);
-        }
 
-        // Handle favouriting
-        favouriteFilm = new MaterialFavoriteButton.Builder(getActivity()).create();
-        favouriteFilm.setOnFavoriteChangeListener(
-                new MaterialFavoriteButton.OnFavoriteChangeListener() {
-                    @Override
-                    public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
-                        System.out.println("Favourite changed.");
-                    }
-                });
+            // Handle favouriting
+            favouriteFilm.setOnFavoriteChangeListener(
+                    new MaterialFavoriteButton.OnFavoriteChangeListener() {
+                        @Override
+                        public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+                            if (favorite) {
+                                FilmsDbHelper.FavouriteFilmsDbHelper.insertFilm(getActivity(), mFilm);
+                            } else {
+                                FilmsDbHelper.FavouriteFilmsDbHelper.removeFilm(getActivity(), mFilm);
+                            }
+                        }
+                    });
+        }
 
         return view;
     }

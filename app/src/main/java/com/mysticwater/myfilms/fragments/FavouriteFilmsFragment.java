@@ -13,25 +13,16 @@ import android.view.ViewGroup;
 
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
-import com.mysticwater.myfilms.model.FilmResults;
-import com.mysticwater.myfilms.network.TheMovieDbService;
-import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.FilmComparator;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
-import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class UpcomingFilmsFragment extends Fragment {
+public class FavouriteFilmsFragment extends Fragment {
 
     private View mLayoutView;
 
@@ -60,42 +51,13 @@ public class UpcomingFilmsFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        Calendar startCal = Calendar.getInstance();
-        Calendar endCal = Calendar.getInstance();
-        endCal.add(Calendar.MONTH, 1);
-
-        String startCalString = CalendarUtils.calendarToString(startCal);
-        String endCalString = CalendarUtils.calendarToString(endCal);
-
-        TheMovieDbService theMovieDbService = TheMovieDbService.retrofit.create(TheMovieDbService.class);
-
-        final Call<FilmResults> upcomingFilms = theMovieDbService.upcomingReleases(getString(R.string
-                .moviedb_api_key), startCalString, endCalString);
-
-        upcomingFilms.enqueue(new Callback<FilmResults>() {
-            @Override
-            public void onResponse(Call<FilmResults> call, Response<FilmResults> response) {
-                FilmResults films = response.body();
-                if (films != null) {
-                    deleteAllFilms();
-                    for (Film film : films.getFilms()) {
-                        FilmsDbHelper.UpcomingFilmsDbHelper.insertFilm(getActivity(), film);
-                    }
-                    fillList();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<FilmResults> call, Throwable t) {
-                fillList();
-            }
-        });
+        fillList();
     }
 
     private void fillList() {
         mFilms.clear();
 
-        Cursor allFilms = FilmsDbHelper.UpcomingFilmsDbHelper.getAllFilms(getActivity());
+        Cursor allFilms = FilmsDbHelper.FavouriteFilmsDbHelper.getAllFilms(getActivity());
         if (allFilms != null) {
             while (allFilms.moveToNext()) {
                 String filmJson = allFilms.getString(allFilms.getColumnIndex(FilmColumns.FILM));
@@ -108,10 +70,5 @@ public class UpcomingFilmsFragment extends Fragment {
         Collections.sort(mFilms, new FilmComparator());
         mFilmsAdapter.updateData(mFilms);
     }
-
-    private void deleteAllFilms() {
-        getActivity().getContentResolver().delete(FilmsProvider.UpcomingFilms.CONTENT_URI, "1", null);
-    }
-
 
 }
