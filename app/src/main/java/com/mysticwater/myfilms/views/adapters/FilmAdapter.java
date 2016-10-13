@@ -71,6 +71,7 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
                     .resize(pixelWidth, pixelHeight)
                     .centerCrop()
                     .tag(mContext)
+                    .placeholder(R.drawable.posterunavailable)
                     .into(holder.poster);
         }
 
