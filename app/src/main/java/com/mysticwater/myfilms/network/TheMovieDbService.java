@@ -20,18 +20,18 @@ public interface TheMovieDbService {
             @Path("id") String id,
             @Query("api_key") String apiKey);
 
-//    @GET("discover/movie?")
-//    Call<FilmResults> upcomingReleases(
-//            @Query("api_key") String apiKey,
-//            @Query("primary_release_date.gte") String startDate, //YYYY-MM-DD
-//            @Query("primary_release_date.lte") String endDate //YYYY-MM-DD
-//    );
-
-    @GET("movie/upcoming?")
+    @GET("discover/movie?")
     Call<FilmResults> upcomingReleases(
             @Query("api_key") String apiKey,
-            @Query("primary_release_date") String primaryDate
+            @Query("primary_release_date.gte") String startDate, //YYYY-MM-DD
+            @Query("primary_release_date.lte") String endDate //YYYY-MM-DD
     );
+
+//    @GET("movie/upcoming?")
+//    Call<FilmResults> upcomingReleases(
+//            @Query("api_key") String apiKey,
+//            @Query("primary_release_date") String primaryDate
+//    );
 
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/")

@@ -23,6 +23,7 @@ import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.FilmComparator;
 import com.mysticwater.myfilms.utils.JsonUtils;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
+import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;
 
@@ -53,22 +54,6 @@ public class UpcomingFilmsFragment extends Fragment {
 
         mFilms = new ArrayList<>();
 
-        TheMovieDbService theMovieDbService = TheMovieDbService.retrofit.create(TheMovieDbService.class);
-        final Call<Film> filmCall = theMovieDbService.film("76341", getString(R.string.moviedb_api_key));
-
-        filmCall.enqueue(new Callback<Film>() {
-            @Override
-            public void onResponse(Call<Film> call, Response<Film> response) {
-                Film film = response.body();
-                System.out.println(film.getTitle());
-            }
-
-            @Override
-            public void onFailure(Call<Film> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-
         Calendar startCal = Calendar.getInstance();
         Calendar endCal = Calendar.getInstance();
         endCal.add(Calendar.MONTH, 1);
@@ -76,29 +61,10 @@ public class UpcomingFilmsFragment extends Fragment {
         String startCalString = CalendarUtils.calendarToString(startCal);
         String endCalString = CalendarUtils.calendarToString(endCal);
 
-//        final Call<FilmResults> upcomingFilms = theMovieDbService.upcomingReleases(getString(R.string
-//                .moviedb_api_key), startCalString, endCalString);
-//
-//        upcomingFilms.enqueue(new Callback<FilmResults>() {
-//            @Override
-//            public void onResponse(Call<FilmResults> call, Response<FilmResults> response) {
-//                FilmResults films = response.body();
-//                if (films != null) {
-//                    for (Film film : films.getFilms()) {
-//                        System.out.println(film.getTitle());
-//                    }
-//                    fillList(films.getFilms());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<FilmResults> call, Throwable t) {
-//                t.printStackTrace();
-//            }
-//        });
+        TheMovieDbService theMovieDbService = TheMovieDbService.retrofit.create(TheMovieDbService.class);
 
         final Call<FilmResults> upcomingFilms = theMovieDbService.upcomingReleases(getString(R.string
-                .moviedb_api_key), startCalString);
+                .moviedb_api_key), startCalString, endCalString);
 
         upcomingFilms.enqueue(new Callback<FilmResults>() {
             @Override
@@ -107,11 +73,9 @@ public class UpcomingFilmsFragment extends Fragment {
                 if (films != null) {
                     deleteAllFilms();
                     for (Film film : films.getFilms()) {
-                        insertFilm(film);
+                        FilmsDbHelper.insertFilm(getActivity(), film);
                     }
                     fillList();
-
-
                 }
             }
 
@@ -134,8 +98,7 @@ public class UpcomingFilmsFragment extends Fragment {
     private void fillList() {
         mFilms.clear();
 
-        Cursor allFilms = getActivity().getContentResolver().query(FilmsProvider.Films.CONTENT_URI, null,
-                null, null, null);
+        Cursor allFilms = FilmsDbHelper.getAllFilms(getActivity());
         if (allFilms != null) {
             while (allFilms.moveToNext()) {
                 String filmJson = allFilms.getString(allFilms.getColumnIndex(FilmColumns.FILM));
@@ -147,14 +110,6 @@ public class UpcomingFilmsFragment extends Fragment {
 
         Collections.sort(mFilms, new FilmComparator());
         mFilmsAdapter.updateData(mFilms);
-    }
-
-    private void insertFilm(Film film) {
-        ContentValues cv = new ContentValues();
-        String filmJson = JsonUtils.objectToJson(film);
-        cv.put(FilmColumns.ID, film.getId());
-        cv.put(FilmColumns.FILM, filmJson);
-        getActivity().getContentResolver().insert(FilmsProvider.Films.CONTENT_URI, cv);
     }
 
     private void deleteAllFilms()
