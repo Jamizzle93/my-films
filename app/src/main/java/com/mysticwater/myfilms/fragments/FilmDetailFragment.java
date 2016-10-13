@@ -67,6 +67,7 @@ public class FilmDetailFragment extends Fragment {
             filmReleaseDate.setText(releaseDate);
 
             // Handle favouriting
+            favouriteFilm.setFavorite(FilmsDbHelper.isFilmFavourite(getActivity(), mFilm));
             favouriteFilm.setOnFavoriteChangeListener(
                     new MaterialFavoriteButton.OnFavoriteChangeListener() {
                         @Override

@@ -12,10 +12,6 @@ import com.mysticwater.myfilms.utils.JsonUtils;
 
 import static com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider.UpcomingFilms.CONTENT_URI;
 
-/**
- * Created by james-home on 13/10/2016.
- */
-
 public class FilmsDbHelper {
 
     public static Film getFilm(Context context, int id) {
@@ -25,6 +21,12 @@ public class FilmsDbHelper {
         }
 
         return film;
+    }
+
+    public static boolean isFilmFavourite(Context context, Film film) {
+        int id = film.getId();
+        Film checkFilm = FavouriteFilmsDbHelper.getFilm(context, id);
+        return checkFilm != null;
     }
 
     public static class UpcomingFilmsDbHelper {
@@ -51,7 +53,7 @@ public class FilmsDbHelper {
             String[] selectionArgs = new String[]{String.valueOf(id)};
 
             Cursor filmCursor = context.getContentResolver().query(
-                    CONTENT_URI,
+                    FilmsProvider.UpcomingFilms.CONTENT_URI,
                     null,
                     selection,
                     selectionArgs,
@@ -59,10 +61,11 @@ public class FilmsDbHelper {
             );
 
             if (filmCursor != null) {
-                filmCursor.moveToFirst();
-                String filmJson = filmCursor.getString(filmCursor.getColumnIndex(FilmColumns.FILM));
-                film = new Gson().fromJson(filmJson, Film.class);
-                filmCursor.close();
+                if (filmCursor.moveToFirst()) {
+                    String filmJson = filmCursor.getString(filmCursor.getColumnIndex(FilmColumns.FILM));
+                    film = new Gson().fromJson(filmJson, Film.class);
+                    filmCursor.close();
+                }
             }
 
             return film;
@@ -102,7 +105,7 @@ public class FilmsDbHelper {
             String[] selectionArgs = new String[]{String.valueOf(id)};
 
             Cursor filmCursor = context.getContentResolver().query(
-                    CONTENT_URI,
+                    FilmsProvider.FavouriteFilms.CONTENT_URI,
                     null,
                     selection,
                     selectionArgs,
@@ -110,10 +113,11 @@ public class FilmsDbHelper {
             );
 
             if (filmCursor != null) {
-                filmCursor.moveToFirst();
-                String filmJson = filmCursor.getString(filmCursor.getColumnIndex(FilmColumns.FILM));
-                film = new Gson().fromJson(filmJson, Film.class);
-                filmCursor.close();
+                if (filmCursor.moveToFirst()) {
+                    String filmJson = filmCursor.getString(filmCursor.getColumnIndex(FilmColumns.FILM));
+                    film = new Gson().fromJson(filmJson, Film.class);
+                    filmCursor.close();
+                }
             }
 
             return film;
