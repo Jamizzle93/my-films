@@ -76,6 +76,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                     builder.indicatorsEnabled(true);
                     builder.build()
                             .load(imageUri)
+                            .placeholder(R.color.colorPrimary)
                             .tag(this)
                             .into(toolbarImage);
                 } else {
