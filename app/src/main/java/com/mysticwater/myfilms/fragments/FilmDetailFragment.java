@@ -14,8 +14,11 @@ import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
+import com.mysticwater.myfilms.model.Genre;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +36,12 @@ public class FilmDetailFragment extends Fragment {
     TextView filmReleaseDate;
     @BindView(R.id.film_favourite_button)
     MaterialFavoriteButton favouriteFilm;
+    @BindView(R.id.film_genres_text)
+    TextView filmGenres;
+    @BindView(R.id.film_rating_text)
+    TextView filmRating;
+    @BindView(R.id.film_imdb_text)
+    TextView filmImdbId;
 
     // Bundle strings
     public static final String FILM_ID = "FilmId";
@@ -80,6 +89,23 @@ public class FilmDetailFragment extends Fragment {
                         }
                     });
         }
+
+//        List<Genre> genreList = mFilm.getGenreIds();
+//        if (genreList != null) {
+//            StringBuilder genreBuilder = new StringBuilder();
+//            for (int i : genreList) {
+//                if (genreBuilder.length() > 0) {
+//                    genreBuilder.append(", ");
+//                }
+//                Genre genre =
+//                genreBuilder.append(genre.toString());
+//            }
+//            filmGenres.setText(genreBuilder.toString());
+//        }
+
+        filmRating.setText(String.valueOf(mFilm.getVoteAverage()));
+
+        filmImdbId.setText("");
 
         return view;
     }

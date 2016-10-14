@@ -11,81 +11,62 @@ import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Film {
-    @SerializedName("adult")
-    @Expose
-    private Boolean adult;
-    @SerializedName("backdrop_path")
-    @Expose
-    private String backdropPath;
-    @SerializedName("belongs_to_collection")
-    @Expose
-    private Object belongsToCollection;
-    @SerializedName("budget")
-    @Expose
-    private Integer budget;
-    @SerializedName("genres")
-    @Expose
-    private List<Genre> genres = new ArrayList<Genre>();
-    @SerializedName("homepage")
-    @Expose
-    private String homepage;
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("imdb_id")
-    @Expose
-    private String imdbId;
-    @SerializedName("original_language")
-    @Expose
-    private String originalLanguage;
-    @SerializedName("original_title")
-    @Expose
-    private String originalTitle;
-    @SerializedName("overview")
-    @Expose
-    private String overview;
-    @SerializedName("popularity")
-    @Expose
-    private Double popularity;
     @SerializedName("poster_path")
     @Expose
     private String posterPath;
-    @SerializedName("production_companies")
+    @SerializedName("adult")
     @Expose
-    private List<ProductionCompany> productionCompanies = new ArrayList<ProductionCompany>();
-    @SerializedName("production_countries")
+    private Boolean adult;
+    @SerializedName("overview")
     @Expose
-    private List<ProductionCountry> productionCountries = new ArrayList<ProductionCountry>();
+    private String overview;
     @SerializedName("release_date")
     @Expose
     private String releaseDate;
-    @SerializedName("revenue")
+    @SerializedName("genre_ids")
     @Expose
-    private Integer revenue;
-    @SerializedName("runtime")
+    private List<Integer> genreIds = new ArrayList<Integer>();
+    @SerializedName("id")
     @Expose
-    private Integer runtime;
-    @SerializedName("spoken_languages")
+    private Integer id;
+    @SerializedName("original_title")
     @Expose
-    private List<SpokenLanguage> spokenLanguages = new ArrayList<SpokenLanguage>();
-    @SerializedName("status")
+    private String originalTitle;
+    @SerializedName("original_language")
     @Expose
-    private String status;
-    @SerializedName("tagline")
-    @Expose
-    private String tagline;
+    private String originalLanguage;
     @SerializedName("title")
     @Expose
     private String title;
+    @SerializedName("backdrop_path")
+    @Expose
+    private String backdropPath;
+    @SerializedName("popularity")
+    @Expose
+    private Double popularity;
+    @SerializedName("vote_count")
+    @Expose
+    private Integer voteCount;
     @SerializedName("video")
     @Expose
     private Boolean video;
     @SerializedName("vote_average")
     @Expose
-    private Double voteAverage;
-    @SerializedName("vote_count")
-    @Expose
-    private Integer voteCount;
+    private Integer voteAverage;
+
+    /**
+     * @return The posterPath
+     */
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    /**
+     * @param posterPath The poster_path
+     */
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
 
     /**
      * @return The adult
@@ -99,132 +80,6 @@ public class Film {
      */
     public void setAdult(Boolean adult) {
         this.adult = adult;
-    }
-
-    /**
-     * @return The backdropPath
-     */
-    public String getBackdropPath() {
-        return backdropPath;
-    }
-
-    /**
-     * @param backdropPath The backdrop_path
-     */
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
-    }
-
-    /**
-     * @return The belongsToCollection
-     */
-    public Object getBelongsToCollection() {
-        return belongsToCollection;
-    }
-
-    /**
-     * @param belongsToCollection The belongs_to_collection
-     */
-    public void setBelongsToCollection(Object belongsToCollection) {
-        this.belongsToCollection = belongsToCollection;
-    }
-
-    /**
-     * @return The budget
-     */
-    public Integer getBudget() {
-        return budget;
-    }
-
-    /**
-     * @param budget The budget
-     */
-    public void setBudget(Integer budget) {
-        this.budget = budget;
-    }
-
-    /**
-     * @return The genres
-     */
-    public List<Genre> getGenres() {
-        return genres;
-    }
-
-    /**
-     * @param genres The genres
-     */
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
-    }
-
-    /**
-     * @return The homepage
-     */
-    public String getHomepage() {
-        return homepage;
-    }
-
-    /**
-     * @param homepage The homepage
-     */
-    public void setHomepage(String homepage) {
-        this.homepage = homepage;
-    }
-
-    /**
-     * @return The id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id The id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * @return The imdbId
-     */
-    public String getImdbId() {
-        return imdbId;
-    }
-
-    /**
-     * @param imdbId The imdb_id
-     */
-    public void setImdbId(String imdbId) {
-        this.imdbId = imdbId;
-    }
-
-    /**
-     * @return The originalLanguage
-     */
-    public String getOriginalLanguage() {
-        return originalLanguage;
-    }
-
-    /**
-     * @param originalLanguage The original_language
-     */
-    public void setOriginalLanguage(String originalLanguage) {
-        this.originalLanguage = originalLanguage;
-    }
-
-    /**
-     * @return The originalTitle
-     */
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
-
-    /**
-     * @param originalTitle The original_title
-     */
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
     }
 
     /**
@@ -242,62 +97,6 @@ public class Film {
     }
 
     /**
-     * @return The popularity
-     */
-    public Double getPopularity() {
-        return popularity;
-    }
-
-    /**
-     * @param popularity The popularity
-     */
-    public void setPopularity(Double popularity) {
-        this.popularity = popularity;
-    }
-
-    /**
-     * @return The posterPath
-     */
-    public String getPosterPath() {
-        return posterPath;
-    }
-
-    /**
-     * @param posterPath The poster_path
-     */
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
-    }
-
-    /**
-     * @return The productionCompanies
-     */
-    public List<ProductionCompany> getProductionCompanies() {
-        return productionCompanies;
-    }
-
-    /**
-     * @param productionCompanies The production_companies
-     */
-    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
-        this.productionCompanies = productionCompanies;
-    }
-
-    /**
-     * @return The productionCountries
-     */
-    public List<ProductionCountry> getProductionCountries() {
-        return productionCountries;
-    }
-
-    /**
-     * @param productionCountries The production_countries
-     */
-    public void setProductionCountries(List<ProductionCountry> productionCountries) {
-        this.productionCountries = productionCountries;
-    }
-
-    /**
      * @return The releaseDate
      */
     public String getReleaseDate() {
@@ -312,73 +111,59 @@ public class Film {
     }
 
     /**
-     * @return The revenue
+     * @return The genreIds
      */
-    public Integer getRevenue() {
-        return revenue;
+    public List<Integer> getGenreIds() {
+        return genreIds;
     }
 
     /**
-     * @param revenue The revenue
+     * @param genreIds The genre_ids
      */
-    public void setRevenue(Integer revenue) {
-        this.revenue = revenue;
+    public void setGenreIds(List<Integer> genreIds) {
+        this.genreIds = genreIds;
     }
 
     /**
-     * @return The runtime
+     * @return The id
      */
-    public Integer getRuntime() {
-        return runtime;
+    public Integer getId() {
+        return id;
     }
 
     /**
-     * @param runtime The runtime
+     * @param id The id
      */
-    public void setRuntime(Integer runtime) {
-        this.runtime = runtime;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
-     * @return The spokenLanguages
+     * @return The originalTitle
      */
-    public List<SpokenLanguage> getSpokenLanguages() {
-        return spokenLanguages;
+    public String getOriginalTitle() {
+        return originalTitle;
     }
 
     /**
-     * @param spokenLanguages The spoken_languages
+     * @param originalTitle The original_title
      */
-    public void setSpokenLanguages(List<SpokenLanguage> spokenLanguages) {
-        this.spokenLanguages = spokenLanguages;
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
     }
 
     /**
-     * @return The status
+     * @return The originalLanguage
      */
-    public String getStatus() {
-        return status;
+    public String getOriginalLanguage() {
+        return originalLanguage;
     }
 
     /**
-     * @param status The status
+     * @param originalLanguage The original_language
      */
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    /**
-     * @return The tagline
-     */
-    public String getTagline() {
-        return tagline;
-    }
-
-    /**
-     * @param tagline The tagline
-     */
-    public void setTagline(String tagline) {
-        this.tagline = tagline;
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
     }
 
     /**
@@ -393,6 +178,48 @@ public class Film {
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    /**
+     * @return The backdropPath
+     */
+    public String getBackdropPath() {
+        return backdropPath;
+    }
+
+    /**
+     * @param backdropPath The backdrop_path
+     */
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
+    }
+
+    /**
+     * @return The popularity
+     */
+    public Double getPopularity() {
+        return popularity;
+    }
+
+    /**
+     * @param popularity The popularity
+     */
+    public void setPopularity(Double popularity) {
+        this.popularity = popularity;
+    }
+
+    /**
+     * @return The voteCount
+     */
+    public Integer getVoteCount() {
+        return voteCount;
+    }
+
+    /**
+     * @param voteCount The vote_count
+     */
+    public void setVoteCount(Integer voteCount) {
+        this.voteCount = voteCount;
     }
 
     /**
@@ -412,33 +239,18 @@ public class Film {
     /**
      * @return The voteAverage
      */
-    public Double getVoteAverage() {
+    public Integer getVoteAverage() {
         return voteAverage;
     }
 
     /**
      * @param voteAverage The vote_average
      */
-    public void setVoteAverage(Double voteAverage) {
+    public void setVoteAverage(Integer voteAverage) {
         this.voteAverage = voteAverage;
     }
 
-    /**
-     * @return The voteCount
-     */
-    public Integer getVoteCount() {
-        return voteCount;
-    }
-
-    /**
-     * @param voteCount The vote_count
-     */
-    public void setVoteCount(Integer voteCount) {
-        this.voteCount = voteCount;
-    }
-
-    public Film(String json)
-    {
+    public Film(String json) {
         Gson gson = new Gson();
         gson.fromJson(json, Film.class);
     }
