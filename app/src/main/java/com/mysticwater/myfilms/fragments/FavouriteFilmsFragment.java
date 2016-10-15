@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -46,6 +47,10 @@ public class FavouriteFilmsFragment extends Fragment {
         mFilmsAdapter = new FilmAdapter(getActivity(), films);
         mFilmsRecyclerView.setAdapter(mFilmsAdapter);
         mFilmsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) mLayoutView.findViewById(R.id
+                .swipe_refresh_films);
+        swipeRefreshLayout.setVisibility(View.GONE);
 
         return mLayoutView;
     }

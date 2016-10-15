@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -41,10 +42,11 @@ public class NowShowingFragment extends Fragment {
 
     private View mLayoutView;
 
-    // List View
     private RecyclerView mFilmsRecyclerView;
     private FilmAdapter mFilmsAdapter;
     private List<Film> mFilms;
+
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,12 +62,30 @@ public class NowShowingFragment extends Fragment {
         mFilmsRecyclerView.setAdapter(mFilmsAdapter);
         mFilmsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout) mLayoutView.findViewById(R
+                .id.swipe_refresh_films);
+        mSwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        Crashlytics.log(Log.INFO, LOG_TAG, "onRefresh called from SwipeRefreshLayout");
+
+                        refreshList();
+                    }
+                }
+        );
+
         return mLayoutView;
     }
 
     public void onResume() {
         super.onResume();
 
+        refreshList();
+    }
+
+
+    private void refreshList() {
         Calendar calendar = Calendar.getInstance();
 
         String calendarString = CalendarUtils.calendarToString(calendar);
@@ -78,6 +98,8 @@ public class NowShowingFragment extends Fragment {
         nowPlayingFilms.enqueue(new Callback<FilmResults>() {
             @Override
             public void onResponse(Call<FilmResults> call, Response<FilmResults> response) {
+                mSwipeRefreshLayout.setRefreshing(false);
+
                 FilmResults films = response.body();
                 if (films != null) {
                     Uri nowShowingUri = FilmsProvider.NowShowingFilms.CONTENT_URI;
@@ -95,6 +117,9 @@ public class NowShowingFragment extends Fragment {
             @Override
             public void onFailure(Call<FilmResults> call, Throwable t) {
                 Crashlytics.log(Log.ERROR, LOG_TAG, "Failed to get response for upcoming releases. " + t.getMessage());
+
+                mSwipeRefreshLayout.setRefreshing(false);
+
                 fillList();
             }
         });
