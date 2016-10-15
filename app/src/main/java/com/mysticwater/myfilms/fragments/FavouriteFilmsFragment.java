@@ -36,12 +36,12 @@ public class FavouriteFilmsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mLayoutView = inflater.inflate(R.layout.fragment_upcoming_films, container, false);
+        mLayoutView = inflater.inflate(R.layout.fragment_film_list, container, false);
 
         mFilms = new ArrayList<>();
 
         // Setup ListView
-        mFilmsRecyclerView = (RecyclerView) mLayoutView.findViewById(R.id.list_upcoming_films);
+        mFilmsRecyclerView = (RecyclerView) mLayoutView.findViewById(R.id.list_films);
         List<Film> films = new ArrayList<>();
         mFilmsAdapter = new FilmAdapter(getActivity(), films);
         mFilmsRecyclerView.setAdapter(mFilmsAdapter);
