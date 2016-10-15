@@ -23,6 +23,9 @@ public class Film {
     @SerializedName("release_date")
     @Expose
     private String releaseDate;
+    @SerializedName("genres")
+    @Expose
+    private List<Genre> genres = new ArrayList<Genre>();
     @SerializedName("genre_ids")
     @Expose
     private List<Integer> genreIds = new ArrayList<Integer>();
@@ -53,6 +56,36 @@ public class Film {
     @SerializedName("vote_average")
     @Expose
     private Double voteAverage;
+    @SerializedName("budget")
+    @Expose
+    private Integer budget;
+    @SerializedName("homepage")
+    @Expose
+    private String homepage;
+    @SerializedName("imdb_id")
+    @Expose
+    private String imdbId;
+    @SerializedName("production_companies")
+    @Expose
+    private List<ProductionCompany> productionCompanies = new ArrayList<ProductionCompany>();
+    @SerializedName("production_countries")
+    @Expose
+    private List<ProductionCountry> productionCountries = new ArrayList<ProductionCountry>();
+    @SerializedName("revenue")
+    @Expose
+    private Integer revenue;
+    @SerializedName("runtime")
+    @Expose
+    private Integer runtime;
+    @SerializedName("spoken_languages")
+    @Expose
+    private List<SpokenLanguage> spokenLanguages = new ArrayList<SpokenLanguage>();
+    @SerializedName("status")
+    @Expose
+    private String status;
+    @SerializedName("tagline")
+    @Expose
+    private String tagline;
 
     /**
      * @return The posterPath
@@ -248,6 +281,204 @@ public class Film {
      */
     public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
+    }
+
+    /**
+     *
+     * @return
+     * The budget
+     */
+    public Integer getBudget() {
+        return budget;
+    }
+
+    /**
+     *
+     * @param budget
+     * The budget
+     */
+    public void setBudget(Integer budget) {
+        this.budget = budget;
+    }
+
+    /**
+     *
+     * @return
+     * The genres
+     */
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    /**
+     *
+     * @param genres
+     * The genres
+     */
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
+
+    /**
+     *
+     * @return
+     * The homepage
+     */
+    public String getHomepage() {
+        return homepage;
+    }
+
+    /**
+     *
+     * @param homepage
+     * The homepage
+     */
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
+    }
+
+    /**
+     *
+     * @return
+     * The imdbId
+     */
+    public String getImdbId() {
+        return imdbId;
+    }
+
+    /**
+     *
+     * @param imdbId
+     * The imdb_id
+     */
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
+    }
+
+    /**
+     *
+     * @return
+     * The productionCompanies
+     */
+    public List<ProductionCompany> getProductionCompanies() {
+        return productionCompanies;
+    }
+
+    /**
+     *
+     * @param productionCompanies
+     * The production_companies
+     */
+    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
+        this.productionCompanies = productionCompanies;
+    }
+
+    /**
+     *
+     * @return
+     * The productionCountries
+     */
+    public List<ProductionCountry> getProductionCountries() {
+        return productionCountries;
+    }
+
+    /**
+     *
+     * @param productionCountries
+     * The production_countries
+     */
+    public void setProductionCountries(List<ProductionCountry> productionCountries) {
+        this.productionCountries = productionCountries;
+    }
+
+    /**
+     *
+     * @return
+     * The revenue
+     */
+    public Integer getRevenue() {
+        return revenue;
+    }
+
+    /**
+     *
+     * @param revenue
+     * The revenue
+     */
+    public void setRevenue(Integer revenue) {
+        this.revenue = revenue;
+    }
+
+    /**
+     *
+     * @return
+     * The runtime
+     */
+    public Integer getRuntime() {
+        return runtime;
+    }
+
+    /**
+     *
+     * @param runtime
+     * The runtime
+     */
+    public void setRuntime(Integer runtime) {
+        this.runtime = runtime;
+    }
+
+    /**
+     *
+     * @return
+     * The spokenLanguages
+     */
+    public List<SpokenLanguage> getSpokenLanguages() {
+        return spokenLanguages;
+    }
+
+    /**
+     *
+     * @param spokenLanguages
+     * The spoken_languages
+     */
+    public void setSpokenLanguages(List<SpokenLanguage> spokenLanguages) {
+        this.spokenLanguages = spokenLanguages;
+    }
+
+    /**
+     *
+     * @return
+     * The status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     *
+     * @param status
+     * The status
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     *
+     * @return
+     * The tagline
+     */
+    public String getTagline() {
+        return tagline;
+    }
+
+    /**
+     *
+     * @param tagline
+     * The tagline
+     */
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
     }
 
     public Film(String json) {
