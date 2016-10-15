@@ -3,6 +3,7 @@ package com.mysticwater.myfilms.fragments;
 import com.google.gson.Gson;
 
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.utils.FilmComparator;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
+import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;
 
 import java.util.ArrayList;
@@ -57,7 +59,8 @@ public class FavouriteFilmsFragment extends Fragment {
     private void fillList() {
         mFilms.clear();
 
-        Cursor allFilms = FilmsDbHelper.FavouriteFilmsDbHelper.getAllFilms(getActivity());
+        Uri favouriteFilmsUri = FilmsProvider.FavouriteFilms.CONTENT_URI;
+        Cursor allFilms = FilmsDbHelper.getAllFilms(getActivity(), favouriteFilmsUri);
         if (allFilms != null) {
             while (allFilms.moveToNext()) {
                 String filmJson = allFilms.getString(allFilms.getColumnIndex(FilmColumns.FILM));

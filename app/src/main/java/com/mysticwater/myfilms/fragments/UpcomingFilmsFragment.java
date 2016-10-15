@@ -3,6 +3,7 @@ package com.mysticwater.myfilms.fragments;
 import com.google.gson.Gson;
 
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -77,9 +78,10 @@ public class UpcomingFilmsFragment extends Fragment {
             public void onResponse(Call<FilmResults> call, Response<FilmResults> response) {
                 FilmResults films = response.body();
                 if (films != null) {
+                    Uri upcomingFilmsUri = FilmsProvider.UpcomingFilms.CONTENT_URI;
                     deleteAllFilms();
                     for (Film film : films.getFilms()) {
-                        FilmsDbHelper.UpcomingFilmsDbHelper.insertFilm(getActivity(), film);
+                        FilmsDbHelper.insertFilm(getActivity(), upcomingFilmsUri, film);
                     }
                     fillList();
                 }
@@ -95,7 +97,8 @@ public class UpcomingFilmsFragment extends Fragment {
     private void fillList() {
         mFilms.clear();
 
-        Cursor allFilms = FilmsDbHelper.UpcomingFilmsDbHelper.getAllFilms(getActivity());
+        Uri upcomingFilmsUri = FilmsProvider.UpcomingFilms.CONTENT_URI;
+        Cursor allFilms = FilmsDbHelper.getAllFilms(getActivity(), upcomingFilmsUri);
         if (allFilms != null) {
             while (allFilms.moveToNext()) {
                 String filmJson = allFilms.getString(allFilms.getColumnIndex(FilmColumns.FILM));

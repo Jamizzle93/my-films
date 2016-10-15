@@ -1,6 +1,7 @@
 package com.mysticwater.myfilms.fragments;
 
 import android.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
+import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,10 +80,12 @@ public class FilmDetailFragment extends Fragment {
                     new MaterialFavoriteButton.OnFavoriteChangeListener() {
                         @Override
                         public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+                            Uri favouriteFilmUri = FilmsProvider.FavouriteFilms.CONTENT_URI;
+
                             if (favorite) {
-                                FilmsDbHelper.FavouriteFilmsDbHelper.insertFilm(getActivity(), mFilm);
+                                FilmsDbHelper.insertFilm(getActivity(), favouriteFilmUri, mFilm);
                             } else {
-                                FilmsDbHelper.FavouriteFilmsDbHelper.removeFilm(getActivity(), mFilm);
+                                FilmsDbHelper.removeFilm(getActivity(), favouriteFilmUri, mFilm);
                             }
                         }
                     });

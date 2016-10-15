@@ -11,13 +11,13 @@ import net.simonvt.schematic.annotation.TableEndpoint;
 @ContentProvider(authority = FilmsProvider.AUTHORITY, database = FilmsDatabase.class)
 public final class FilmsProvider {
 
-    //public static final String AUTHORITY = "com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider";
     public static final String AUTHORITY = BuildConfig.APPLICATION_ID;
     static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 
     interface Path {
         String UPCOMING_FILMS = "UpcomingFilms";
         String FAVOURITE_FILMS = "FavouriteFilms";
+        String NOW_SHOWING_FILMS = "NowShowingFilms";
     }
 
     private static Uri buildUri(String... paths) {
@@ -29,8 +29,7 @@ public final class FilmsProvider {
     }
 
     @TableEndpoint(table = FilmsDatabase.UPCOMING_FILMS)
-    public static class UpcomingFilms
-    {
+    public static class UpcomingFilms {
         @ContentUri(
                 path = Path.UPCOMING_FILMS,
                 type = "vnd.android.cursor.dir/film",
@@ -40,12 +39,20 @@ public final class FilmsProvider {
     }
 
     @TableEndpoint(table = FilmsDatabase.FAVOURITE_FILMS)
-    public static class FavouriteFilms
-    {
+    public static class FavouriteFilms {
         @ContentUri(
                 path = Path.FAVOURITE_FILMS,
                 type = "vnd.android.cursor.dir/film",
                 defaultSort = FilmColumns.ID + " ASC")
         public static final Uri CONTENT_URI = buildUri(Path.FAVOURITE_FILMS);
+    }
+
+    @TableEndpoint(table = FilmsDatabase.NOW_SHOWING_FILMS)
+    public static class NowShowingFilms {
+        @ContentUri(
+                path = Path.NOW_SHOWING_FILMS,
+                type = "vnd.android.cursor.dir/film",
+                defaultSort = FilmColumns.ID + " ASC")
+        public static final Uri CONTENT_URI = buildUri(Path.NOW_SHOWING_FILMS);
     }
 }

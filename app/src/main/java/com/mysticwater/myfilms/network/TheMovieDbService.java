@@ -27,6 +27,12 @@ public interface TheMovieDbService {
             @Query("primary_release_date.lte") String endDate //YYYY-MM-DD
     );
 
+    @GET("movie/now_playing?")
+    Call <FilmResults> nowPlaying(
+            @Query("api_key") String apiKey,
+            @Query("primary_release_date") String date
+    );
+
 //    @GET("movie/upcoming?")
 //    Call<FilmResults> upcomingReleases(
 //            @Query("api_key") String apiKey,
