@@ -3,136 +3,152 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/spacing_normal">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/film_title"
-        style="@style/title_text"
+    <RelativeLayout
+        android:id="@+id/film_detail_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/film_favourite_button"
-        tools:text="Star Wars: The Force Awakens" />
-
-    <com.github.ivbaranov.mfb.MaterialFavoriteButton
-        android:id="@+id/film_favourite_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        app:mfb_animate_favorite="true"
-        app:mfb_animate_unfavorite="false"
-        app:mfb_bounce_duration="300"
-        app:mfb_color="black"
-        app:mfb_padding="12"
-        app:mfb_rotation_angle="360"
-        app:mfb_rotation_duration="400"
-        app:mfb_type="star" />
-
-    <TextView
-        android:id="@+id/film_overview_label"
-        style="@style/bold_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/film_title"
-        android:text="@string/label_overview" />
-
-
-    <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/film_overview_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/film_overview_label"
-        android:layout_marginTop="@dimen/spacing_tiny"
-        expandableTextView:animDuration="200"
-        expandableTextView:maxCollapsedLines="4">
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
 
         <TextView
-            android:id="@+id/expandable_text"
-            style="@style/normal_text"
+            android:id="@+id/film_title"
+            style="@style/title_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/film_favourite_button"
+            tools:text="Star Wars: The Force Awakens" />
 
-        <ImageButton
-            android:id="@id/expand_collapse"
+        <com.github.ivbaranov.mfb.MaterialFavoriteButton
+            android:id="@+id/film_favourite_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:background="@android:color/transparent"
-            android:padding="16dp" />
-    </com.ms.square.android.expandabletextview.ExpandableTextView>
+            android:layout_alignParentEnd="true"
+            app:mfb_animate_favorite="true"
+            app:mfb_animate_unfavorite="false"
+            app:mfb_bounce_duration="300"
+            app:mfb_color="black"
+            app:mfb_padding="12"
+            app:mfb_rotation_angle="360"
+            app:mfb_rotation_duration="400"
+            app:mfb_type="star" />
 
-    <TextView
-        android:id="@+id/film_release_date_label"
-        style="@style/bold_text"
+        <TextView
+            android:id="@+id/film_overview_label"
+            style="@style/bold_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_title"
+            android:text="@string/label_overview" />
+
+
+        <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/film_overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_overview_label"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            expandableTextView:animDuration="200"
+            expandableTextView:maxCollapsedLines="4">
+
+            <TextView
+                android:id="@+id/expandable_text"
+                style="@style/normal_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@id/expand_collapse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:background="@android:color/transparent"
+                android:padding="16dp" />
+        </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+        <TextView
+            android:id="@+id/film_release_date_label"
+            style="@style/bold_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_overview_text"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="@string/label_release_date" />
+
+        <TextView
+            android:id="@+id/film_release_date_text"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_release_date_label"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            tools:text="25/05/2016" />
+
+        <TextView
+            android:id="@+id/film_genres_label"
+            style="@style/bold_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_release_date_text"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="@string/label_genres" />
+
+        <TextView
+            android:id="@+id/film_genres_text"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_genres_label"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            tools:text="Action, Thriller" />
+
+        <TextView
+            android:id="@+id/film_rating_label"
+            style="@style/bold_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_genres_text"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="@string/label_rating" />
+
+        <TextView
+            android:id="@+id/film_rating_text"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_rating_label"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            tools:text="7.8" />
+
+        <TextView
+            android:id="@+id/film_imdb_label"
+            style="@style/bold_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_rating_text"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="@string/label_imdb" />
+
+        <TextView
+            android:id="@+id/film_imdb_text"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_imdb_label"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            tools:text="105" />
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/film_loading_progress"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/film_overview_text"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:text="@string/label_release_date" />
-
-    <TextView
-        android:id="@+id/film_release_date_text"
-        style="@style/normal_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/film_release_date_label"
-        android:layout_marginTop="@dimen/spacing_tiny"
-        tools:text="25/05/2016" />
-
-    <TextView
-        android:id="@+id/film_genres_label"
-        style="@style/bold_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/film_release_date_text"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:text="@string/label_genres" />
-
-    <TextView
-        android:id="@+id/film_genres_text"
-        style="@style/normal_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/film_genres_label"
-        android:layout_marginTop="@dimen/spacing_tiny"
-        tools:text="Action, Thriller" />
-
-    <TextView
-        android:id="@+id/film_rating_label"
-        style="@style/bold_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/film_genres_text"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:text="@string/label_rating" />
-
-    <TextView
-        android:id="@+id/film_rating_text"
-        style="@style/normal_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/film_rating_label"
-        android:layout_marginTop="@dimen/spacing_tiny"
-        tools:text="7.8" />
-
-    <TextView
-        android:id="@+id/film_imdb_label"
-        style="@style/bold_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/film_rating_text"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:text="@string/label_imdb" />
-
-    <TextView
-        android:id="@+id/film_imdb_text"
-        style="@style/normal_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/film_imdb_label"
-        android:layout_marginTop="@dimen/spacing_tiny"
-        tools:text="105" />
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible" />
 
 </RelativeLayout>

@@ -481,6 +481,8 @@ public class Film {
         this.tagline = tagline;
     }
 
+
+
     public Film(String json) {
         Gson gson = new Gson();
         gson.fromJson(json, Film.class);
