@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.Crashlytics;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.model.FilmResults;
@@ -33,6 +36,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UpcomingFilmsFragment extends Fragment {
+
+    private static final String LOG_TAG = "UpcomingFilmsFragment";
 
     private View mLayoutView;
 
@@ -81,7 +86,10 @@ public class UpcomingFilmsFragment extends Fragment {
                     Uri upcomingFilmsUri = FilmsProvider.UpcomingFilms.CONTENT_URI;
                     deleteAllFilms();
                     for (Film film : films.getFilms()) {
-                        FilmsDbHelper.insertFilm(getActivity(), upcomingFilmsUri, film);
+                        // Only care about films with a poster and backdrop
+                        if (!TextUtils.isEmpty(film.getPosterPath()) && !TextUtils.isEmpty(film.getBackdropPath())) {
+                            FilmsDbHelper.insertFilm(getActivity(), upcomingFilmsUri, film);
+                        }
                     }
                     fillList();
                 }
@@ -89,6 +97,7 @@ public class UpcomingFilmsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<FilmResults> call, Throwable t) {
+                Crashlytics.log(Log.ERROR, LOG_TAG, "Failed to get response for upcoming releases. " + t.getMessage());
                 fillList();
             }
         });
