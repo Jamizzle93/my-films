@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import com.mysticwater.myfilms.fragments.FilmDetailFragment;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
+import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
+import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 import com.squareup.picasso.Picasso;
 
 import static com.mysticwater.myfilms.fragments.FilmDetailFragment.FILM_ID;
@@ -50,21 +52,7 @@ public class FilmDetailActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putInt(FILM_ID, filmId);
 
-            Film film = null;
-            String[] selectionArgs = new String[]{String.valueOf(filmId)};
-            Cursor allFilms = getContentResolver().query(
-                    CONTENT_URI,
-                    null,
-                    FilmColumns.ID + " = ?",
-                    selectionArgs,
-                    null
-            );
-
-            if (allFilms != null) {
-                allFilms.moveToFirst();
-                String filmJson = allFilms.getString(allFilms.getColumnIndex(FilmColumns.FILM));
-                film = new Gson().fromJson(filmJson, Film.class);
-            }
+            Film film = FilmsDbHelper.getFilm(this, filmId);
 
             if (film != null) {
                 ImageView toolbarImage = (ImageView) findViewById(R.id.film_backdrop);

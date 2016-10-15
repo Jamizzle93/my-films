@@ -2,6 +2,7 @@
     <string name="app_name">My Films</string>
 
     <!-- Tab names -->
+    <string name="tab_now_showing">Now Showing</string>
     <string name="tab_upcoming">Upcoming</string>
     <string name="tab_favourite">Favourite</string>
 
