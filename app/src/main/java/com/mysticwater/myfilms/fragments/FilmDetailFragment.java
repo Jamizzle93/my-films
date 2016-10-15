@@ -14,11 +14,8 @@ import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
-import com.mysticwater.myfilms.model.Genre;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -103,7 +100,9 @@ public class FilmDetailFragment extends Fragment {
 //            filmGenres.setText(genreBuilder.toString());
 //        }
 
-        filmRating.setText(String.valueOf(mFilm.getVoteAverage()));
+        if (mFilm.getVoteAverage() != null) {
+            filmRating.setText(String.valueOf(mFilm.getVoteAverage()));
+        }
 
         filmImdbId.setText("");
 
