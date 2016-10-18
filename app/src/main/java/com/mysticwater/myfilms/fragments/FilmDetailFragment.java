@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -57,8 +58,8 @@ public class FilmDetailFragment extends Fragment {
     TextView filmGenres;
     @BindView(R.id.film_rating_text)
     TextView filmRating;
-    @BindView(R.id.film_imdb_text)
-    TextView filmImdbId;
+    @BindView(R.id.film_imdb_button)
+    ImageView imdbButton;
 
     // Bundle strings
     public static final String FILM_ID = "FilmId";
@@ -171,8 +172,7 @@ public class FilmDetailFragment extends Fragment {
 
             final String imdbId = mFilm.getImdbId();
             if (!TextUtils.isEmpty(imdbId)) {
-                filmImdbId.setText(imdbId);
-                filmImdbId.setOnClickListener(new View.OnClickListener() {
+                imdbButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Uri uri = Uri.parse("http://www.imdb.com/title/" + imdbId);
@@ -180,6 +180,10 @@ public class FilmDetailFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+            }
+            else
+            {
+                imdbButton.setVisibility(View.GONE);
             }
 
         }
