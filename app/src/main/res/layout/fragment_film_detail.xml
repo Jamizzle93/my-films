@@ -120,6 +120,7 @@
             tools:text="25/05/2016" />
 
         <ImageView
+            android:id="@+id/film_add_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/film_release_date_label"

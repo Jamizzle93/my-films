@@ -15,6 +15,16 @@
     <string name="label_runtime">Runtime</string>
     <string name="label_imdb">IMDB ID</string>
 
+    <!-- Plurals -->
+    <plurals name="hours">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+
     <!-- API Strings -->
     <string name="moviedb_api_key">0201f736e8e671997dfcc9003c16faac</string>
     <string name="moviedb_image_w500_url">https://image.tmdb.org/t/p/w500%1$s</string>
