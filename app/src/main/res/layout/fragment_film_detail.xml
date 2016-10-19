@@ -26,6 +26,8 @@
         <TextView
             android:id="@+id/film_title"
             style="@style/title_text"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_alignTop="@+id/film_favourite_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -37,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/spacing_normal"
             app:mfb_animate_favorite="true"
             app:mfb_animate_unfavorite="false"
             app:mfb_bounce_duration="300"
