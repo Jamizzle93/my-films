@@ -19,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_tiny"
+        android:layout_alignTop="@+id/row_upcoming_poster_image"
         android:layout_toEndOf="@+id/row_upcoming_poster_image"
         tools:text="Star Wars: The Force Awakens" />
 
@@ -27,8 +28,8 @@
         style="@style/bold_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/row_upcoming_title_text"
         android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/row_upcoming_poster_image"
         android:layout_toEndOf="@+id/row_upcoming_poster_image"
         android:text="@string/label_release_date_colon" />
 
@@ -37,7 +38,7 @@
         style="@style/normal_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/row_upcoming_title_text"
+        android:layout_alignBottom="@+id/row_upcoming_poster_image"
         android:layout_marginStart="4dp"
         android:layout_toEndOf="@+id/row_upcoming_release_label"
         tools:text="08/08/2016" />
