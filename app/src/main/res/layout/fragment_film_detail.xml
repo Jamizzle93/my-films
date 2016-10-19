@@ -18,19 +18,19 @@
         android:id="@+id/film_detail_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_marginRight="16dp">
 
         <TextView
             android:id="@+id/film_title"
             style="@style/title_text"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:layout_alignTop="@+id/film_favourite_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_alignTop="@+id/film_favourite_button"
+            android:layout_marginTop="@dimen/spacing_normal"
             android:layout_toStartOf="@+id/film_favourite_button"
             tools:text="Star Wars: The Force Awakens" />
 
@@ -84,29 +84,11 @@
         </com.ms.square.android.expandabletextview.ExpandableTextView>
 
         <TextView
-            android:id="@+id/film_release_date_label"
-            style="@style/bold_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/film_overview_text"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:text="@string/label_release_date" />
-
-        <TextView
-            android:id="@+id/film_release_date_text"
-            style="@style/normal_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/film_release_date_label"
-            android:layout_marginTop="@dimen/spacing_tiny"
-            tools:text="25/05/2016" />
-
-        <TextView
             android:id="@+id/film_genres_label"
             style="@style/bold_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/film_release_date_text"
+            android:layout_below="@+id/film_overview_text"
             android:layout_marginTop="@dimen/spacing_small"
             android:text="@string/label_genres" />
 
@@ -120,11 +102,55 @@
             tools:text="Action, Thriller" />
 
         <TextView
-            android:id="@+id/film_rating_label"
+            android:id="@+id/film_release_date_label"
             style="@style/bold_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/film_genres_text"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="@string/label_release_date" />
+
+        <TextView
+            android:id="@+id/film_release_date_text"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_release_date_label"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            tools:text="25/05/2016" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/film_release_date_label"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/spacing_normal"
+            android:src="@drawable/ic_event_black_24dp" />
+
+        <TextView
+            android:id="@+id/film_runtime_label"
+            style="@style/bold_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_release_date_text"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="@string/label_runtime" />
+
+        <TextView
+            android:id="@+id/film_runtime_text"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_runtime_label"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            tools:text="1 hour 45 minutes" />
+
+        <TextView
+            android:id="@+id/film_rating_label"
+            style="@style/bold_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/film_runtime_text"
             android:layout_marginTop="@dimen/spacing_small"
             android:text="@string/label_rating" />
 
@@ -140,13 +166,13 @@
         <ImageView
             android:id="@+id/film_imdb_button"
             android:layout_width="75dp"
-            android:adjustViewBounds="true"
             android:layout_height="44dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/film_rating_text"
+            android:adjustViewBounds="true"
             android:maxHeight="100dp"
             android:padding="8dp"
-            android:layout_below="@+id/film_rating_text"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/imdb_logo"/>
+            android:src="@drawable/imdb_logo" />
 
 
     </RelativeLayout>
