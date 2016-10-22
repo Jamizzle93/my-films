@@ -14,7 +14,6 @@ public interface TheMovieDbService {
 
     //EXAMPLE FULL URL: https://api.themoviedb.org/3/movie/550?api_key=0201f736e8e671997dfcc9003c16faac
 
-
     @GET("movie/{id}?")
     Call<Film> film(
             @Path("id") String id,
@@ -32,6 +31,16 @@ public interface TheMovieDbService {
             @Query("api_key") String apiKey,
             @Query("primary_release_date") String date
     );
+
+    // Search example
+    //https://api.themoviedb.org/3/search/movie?api_key=0201f736e8e671997dfcc9003c16faac&language
+    // =en-UK&query=Doctor
+    @GET("search/movie?")
+    Call<FilmResults> searchFilms(
+            @Query("api_key") String apiKey,
+            @Query("query") String query
+    );
+
 
 //    @GET("movie/upcoming?")
 //    Call<FilmResults> upcomingReleases(
