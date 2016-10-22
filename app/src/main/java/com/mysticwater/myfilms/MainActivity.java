@@ -1,6 +1,7 @@
 package com.mysticwater.myfilms;
 
 import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -46,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        ComponentName cn = new ComponentName(this, SearchResultsActivity.class);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(cn));
 
         return true;
     }
