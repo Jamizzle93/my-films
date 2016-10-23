@@ -6,6 +6,9 @@
     <string name="tab_upcoming">Upcoming</string>
     <string name="tab_favourite">Favourite</string>
 
+    <!-- Titles -->
+    <string name="title_search_results">Search Results</string>
+
     <!-- Labels -->
     <string name="label_release_date_colon">Release Date:</string>
     <string name="label_overview">Overview</string>
@@ -24,6 +27,9 @@
         <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
     </plurals>
+
+    <!-- Hints -->
+    <string name="hint_search">Search Films…</string>
 
     <!-- API Strings -->
     <string name="moviedb_api_key">0201f736e8e671997dfcc9003c16faac</string>
