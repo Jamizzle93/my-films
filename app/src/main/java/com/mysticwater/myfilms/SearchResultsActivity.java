@@ -134,7 +134,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     }
 
     private void fillList() {
-        mFilmsAdapter.updateData(mFilms);
+        List<Film> data = new ArrayList<>(mFilms);
+        mFilmsAdapter.updateData(data);
     }
-
 }
