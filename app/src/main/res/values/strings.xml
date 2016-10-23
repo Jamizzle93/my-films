@@ -6,6 +6,9 @@
     <string name="tab_upcoming">Upcoming</string>
     <string name="tab_favourite">Favourite</string>
 
+    <!-- Titles -->
+    <string name="title_search_results">Search Results</string>
+
     <!-- Labels -->
     <string name="label_release_date_colon">Release Date:</string>
     <string name="label_overview">Overview</string>

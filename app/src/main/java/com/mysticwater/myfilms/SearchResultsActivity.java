@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
 import com.crashlytics.android.Crashlytics;
 import com.mysticwater.myfilms.model.Film;
@@ -55,7 +56,19 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         handleIntent(getIntent());
 
-        mToolbar.setTitle("Search Results");
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
+            mToolbar.setTitle(getString(R.string.title_search_results));
+            mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+            mToolbar.setNavigationOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    finish();
+                }
+            });
+        }
 
         // Setup recycler view
         mFilms = new ArrayList<>();
@@ -76,12 +89,9 @@ public class SearchResultsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         return true;
     }
