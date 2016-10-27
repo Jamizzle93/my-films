@@ -18,6 +18,17 @@
     <string name="label_runtime">Runtime</string>
     <string name="label_imdb">IMDB ID</string>
 
+    <!-- Settings -->
+    <!-- Titles -->
+    <string name="title_settings">Settings</string>
+    <string name="title_about">About</string>
+    <!-- About Settings Labels -->
+    <string name="label_about_app_version">%1$s v%2$s</string>
+    <string name="label_about_legal">Legal</string>
+    <!-- Preference Keys -->
+    <string name="pref_app_version">key_app_version</string>
+    <string name="pref_legal">key_legal</string>
+
     <!-- Plurals -->
     <plurals name="hours">
         <item quantity="one">%d hour</item>
