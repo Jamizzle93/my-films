@@ -30,7 +30,7 @@ public class AboutSettingsFragment extends PreferenceFragment {
         Preference appDetailsPref = findPreference(getString(R.string.pref_app_version));
         mAppName = getString(R.string.app_name);
         mAppVersion = BuildConfig.VERSION_NAME;
-        appDetailsPref.setTitle(getString(R.string.label_about_app_version, mAppName, mAppVersion));
+        appDetailsPref.setSummary(getString(R.string.content_about_app_version, mAppName, mAppVersion));
 
         Preference legalPref = findPreference(getString(R.string.pref_legal));
         legalPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
