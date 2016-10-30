@@ -67,7 +67,7 @@ public class AboutSettingsFragment extends PreferenceFragment {
     }
 
     private String buildLegalText() {
-        return getString(R.string.app_name) + "\n\n" +
+        return mAppName + " " + mAppVersion + "\n\n" +
                 generateCopyrightString() + "\n\n" +
                 generateLibraryReferences();
     }
