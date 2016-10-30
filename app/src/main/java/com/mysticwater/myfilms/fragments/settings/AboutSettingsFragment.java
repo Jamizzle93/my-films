@@ -69,8 +69,7 @@ public class AboutSettingsFragment extends PreferenceFragment {
     private String buildLegalText() {
         return getString(R.string.app_name) + "\n\n" +
                 generateCopyrightString() + "\n\n" +
-                generateLibraryReferences() +
-                generateLicences()
+                generateLibraryReferences();
     }
 
     private String generateCopyrightString() {
@@ -80,37 +79,41 @@ public class AboutSettingsFragment extends PreferenceFragment {
         return "Copyright \u00a9 " + year + " Mystic Water. All rights reserved.";
     }
 
-    private String generateLibraryReferences()
-    {
-        return getString(R.string.app_name) + " is built using open source software: " + "\n\n" +
-                "\u2022 Retrofit by Square\n" +
-                "\u2022 google-gson\n" +
-                "\u2022 Picasso by Square\n" +
-                "\u2022 Crashlytics by Fabric\n" +
-                "\u2022 Answers by Fabric\n" +
-                "\u2022 Schematic by SimonVT\n" +
-                "\u2022 Butter Knife by JakeWharton\n" +
-                "\u2022 ExpandableTextView by Manabu-GT\n" +
-                "\u2022 MaterialFavoriteButton by IvBaranov\n";
+    private String generateLibraryReferences() {
+        return getString(R.string.app_name) + " is built using open source software: " + "\n" +
+                butterKnifeLicence() + "\n\n" +
+                expandableTextViewLicence() + "\n\n" +
+                gsonLicence() + "\n\n" +
+                materialFavoriteButtonLicence() + "\n\n" +
+                picassoLicence() + "\n\n" +
+                retrofitLicence() + "\n\n" +
+                schematicLicence() + "\n\n";
     }
 
-    private String generateLicenses()
-    {
-
-        String retrofitLicense = "Licensed under the Apache License, Version 2.0 (the " +
-                "\"License\");\n" +
+    private String gsonLicence() {
+        return "\n" +
+                "google-gson [https://github.com/google/gson]" +
+                "\n\n" +
+                "Copyright 2008 Google Inc.\n" +
+                "\n" +
+                "Licensed under the Apache License, Version 2.0 (the \"License\");\n" +
                 "you may not use this file except in compliance with the License.\n" +
                 "You may obtain a copy of the License at\n" +
                 "\n" +
-                "   http://www.apache.org/licenses/LICENSE-2.0\n" +
+                "    http://www.apache.org/licenses/LICENSE-2.0\n" +
                 "\n" +
                 "Unless required by applicable law or agreed to in writing, software\n" +
                 "distributed under the License is distributed on an \"AS IS\" BASIS,\n" +
                 "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n" +
                 "See the License for the specific language governing permissions and\n" +
                 "limitations under the License.";
+    }
 
-        String schematicLicense = "Copyright 2014 Simon Vig Therkildsen\n" +
+    private String retrofitLicence() {
+        return "\n" +
+                "Retrofit [https://github.com/square/retrofit]" +
+                "\n\n" +
+                "Copyright 2013 Square, Inc.\n" +
                 "\n" +
                 "Licensed under the Apache License, Version 2.0 (the \"License\");\n" +
                 "you may not use this file except in compliance with the License.\n" +
@@ -123,9 +126,101 @@ public class AboutSettingsFragment extends PreferenceFragment {
                 "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n" +
                 "See the License for the specific language governing permissions and\n" +
                 "limitations under the License.";
+    }
 
+    private String picassoLicence() {
+        return "\n" +
+                "Picasso [https://github.com/square/picasso]" +
+                "\n\n" +
+                "Copyright 2013 Square, Inc.\n" +
+                "\n" +
+                "Licensed under the Apache License, Version 2.0 (the \"License\");\n" +
+                "you may not use this file except in compliance with the License.\n" +
+                "You may obtain a copy of the License at\n" +
+                "\n" +
+                "   http://www.apache.org/licenses/LICENSE-2.0\n" +
+                "\n" +
+                "Unless required by applicable law or agreed to in writing, software\n" +
+                "distributed under the License is distributed on an \"AS IS\" BASIS,\n" +
+                "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n" +
+                "See the License for the specific language governing permissions and\n" +
+                "limitations under the License.";
+    }
 
+    private String schematicLicence() {
+        return "\n" +
+                "Schematic [https://github.com/SimonVT/schematic]" +
+                "\n\n" +
+                "Copyright 2014 Simon Vig Therkildsen\n" +
+                "\n" +
+                "Licensed under the Apache License, Version 2.0 (the \"License\");\n" +
+                "you may not use this file except in compliance with the License.\n" +
+                "You may obtain a copy of the License at\n" +
+                "\n" +
+                "   http://www.apache.org/licenses/LICENSE-2.0\n" +
+                "\n" +
+                "Unless required by applicable law or agreed to in writing, software\n" +
+                "distributed under the License is distributed on an \"AS IS\" BASIS,\n" +
+                "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n" +
+                "See the License for the specific language governing permissions and\n" +
+                "limitations under the License.";
+    }
 
+    private String butterKnifeLicence() {
+        return "\n" +
+                "Butter Knife [https://github.com/JakeWharton/butterknife]" +
+                "\n\n" +
+                "Copyright 2013 Jake Wharton\n" +
+                "\n" +
+                "Licensed under the Apache License, Version 2.0 (the \"License\");\n" +
+                "you may not use this file except in compliance with the License.\n" +
+                "You may obtain a copy of the License at\n" +
+                "\n" +
+                "   http://www.apache.org/licenses/LICENSE-2.0\n" +
+                "\n" +
+                "Unless required by applicable law or agreed to in writing, software\n" +
+                "distributed under the License is distributed on an \"AS IS\" BASIS,\n" +
+                "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n" +
+                "See the License for the specific language governing permissions and\n" +
+                "limitations under the License.";
+    }
+
+    private String expandableTextViewLicence() {
+        return "\n" +
+                "ExpandableTextView [https://github.com/Manabu-GT/ExpandableTextView]" +
+                "\n\n" +
+                "Copyright 2014 Manabu Shimobe\n" +
+                "\n" +
+                "Licensed under the Apache License, Version 2.0 (the \"License\");\n" +
+                "you may not use this file except in compliance with the License.\n" +
+                "You may obtain a copy of the License at\n" +
+                "\n" +
+                "http://www.apache.org/licenses/LICENSE-2.0\n" +
+                "\n" +
+                "Unless required by applicable law or agreed to in writing, software\n" +
+                "distributed under the License is distributed on an \"AS IS\" BASIS,\n" +
+                "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n" +
+                "See the License for the specific language governing permissions and\n" +
+                "limitations under the License.";
+    }
+
+    private String materialFavoriteButtonLicence() {
+        return "\n" +
+                "Material Favorite Button [https://github.com/IvBaranov/MaterialFavoriteButton]" +
+                "\n\n" +
+                "Copyright 2015 Ivan Baranov\n" +
+                "\n" +
+                "Licensed under the Apache License, Version 2.0 (the \"License\");\n" +
+                "you may not use this file except in compliance with the License.\n" +
+                "You may obtain a copy of the License at\n" +
+                "\n" +
+                "   http://www.apache.org/licenses/LICENSE-2.0\n" +
+                "\n" +
+                "Unless required by applicable law or agreed to in writing, software\n" +
+                "distributed under the License is distributed on an \"AS IS\" BASIS,\n" +
+                "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n" +
+                "See the License for the specific language governing permissions and\n" +
+                "limitations under the License.";
     }
 
 }
