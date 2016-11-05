@@ -14,7 +14,6 @@
     <dimen name="spacing_tiny">4dp</dimen>
 
     <!-- typical sizes of views -->
-    <dimen name="list_cell_height">166dp</dimen>
     <dimen name="image_height_poster">100dp</dimen>
     <dimen name="image_width_poster">150dp</dimen>
 

@@ -62,12 +62,6 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
 
             Picasso.Builder builder = new Picasso.Builder(mContext);
             builder.indicatorsEnabled(true);
-//
-//            System.out.println(holder.poster.getMeasuredWidth());
-//            System.out.println(holder.poster.getMeasuredHeight()\);
-//
-//            int pixelWidth = dpToPixels(holder.poster.getMeasuredWidth());
-//            int pixelHeight = dpToPixels(holder.poster.getMeasuredHeight());
 
             builder.build()
                     .load(imageUri)
@@ -100,11 +94,6 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
         filmsList.clear();
         filmsList.addAll(data);
         notifyDataSetChanged();
-    }
-
-    private int dpToPixels(int dp) {
-        Resources r = mContext.getResources();
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics());
     }
 
     private void openFilmDetail(int id) {

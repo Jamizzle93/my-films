@@ -2,8 +2,8 @@
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/list_cell_height"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/spacing_small">
 
     <ImageView
@@ -12,23 +12,25 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="4dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         android:src="@drawable/posterunavailable"
         app:layout_widthPercent="34%" />
 
     <TextView
         android:id="@+id/row_upcoming_title_text"
         style="@style/title_text"
-        app:layout_widthPercent="66%"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/row_upcoming_poster_image"
         android:layout_marginStart="@dimen/spacing_tiny"
         android:layout_toEndOf="@+id/row_upcoming_poster_image"
+        app:layout_widthPercent="66%"
         tools:text="Star Wars: The Force Awakens" />
 
     <TextView
         android:id="@+id/row_upcoming_release_label"
         style="@style/bold_text"
-        app:layout_widthPercent="66%"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/row_upcoming_poster_image"
         android:layout_marginStart="4dp"
@@ -38,7 +40,7 @@
     <TextView
         android:id="@+id/row_upcoming_release_text"
         style="@style/normal_text"
-        app:layout_widthPercent="66%"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/row_upcoming_poster_image"
         android:layout_marginStart="4dp"
