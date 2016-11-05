@@ -62,13 +62,16 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
 
             Picasso.Builder builder = new Picasso.Builder(mContext);
             builder.indicatorsEnabled(true);
-
-            int pixelWidth = dpToPixels(100);
-            int pixelHeight = dpToPixels(150);
+//
+//            System.out.println(holder.poster.getMeasuredWidth());
+//            System.out.println(holder.poster.getMeasuredHeight()\);
+//
+//            int pixelWidth = dpToPixels(holder.poster.getMeasuredWidth());
+//            int pixelHeight = dpToPixels(holder.poster.getMeasuredHeight());
 
             builder.build()
                     .load(imageUri)
-                    .resize(pixelWidth, pixelHeight)
+                    .fit()
                     .centerCrop()
                     .tag(mContext)
                     .placeholder(R.drawable.posterunavailable)
