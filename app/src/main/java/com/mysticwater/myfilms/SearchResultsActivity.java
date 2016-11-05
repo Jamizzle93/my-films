@@ -19,7 +19,6 @@ import com.crashlytics.android.Crashlytics;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
-import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;
 
 import java.util.ArrayList;
@@ -60,11 +59,9 @@ public class SearchResultsActivity extends AppCompatActivity {
             setSupportActionBar(mToolbar);
             mToolbar.setTitle(getString(R.string.title_search_results));
             mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-            mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-            {
+            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     finish();
                 }
             });
@@ -104,6 +101,10 @@ public class SearchResultsActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            if (mFilms != null) {
+                mFilms.clear();
+            }
+
             mQuery = intent.getStringExtra(SearchManager.QUERY);
             searchFilms(mQuery);
         }
