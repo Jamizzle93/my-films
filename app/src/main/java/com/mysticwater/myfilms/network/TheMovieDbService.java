@@ -22,13 +22,15 @@ public interface TheMovieDbService {
     @GET("discover/movie?")
     Call<FilmResults> upcomingReleases(
             @Query("api_key") String apiKey,
+            @Query("region") String region,
             @Query("primary_release_date.gte") String startDate, //YYYY-MM-DD
             @Query("primary_release_date.lte") String endDate //YYYY-MM-DD
     );
 
     @GET("movie/now_playing?")
-    Call <FilmResults> nowPlaying(
+    Call<FilmResults> nowPlaying(
             @Query("api_key") String apiKey,
+            @Query("region") String region,
             @Query("primary_release_date") String date
     );
 

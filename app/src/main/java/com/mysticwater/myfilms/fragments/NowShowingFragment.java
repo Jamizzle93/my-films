@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -86,6 +88,14 @@ public class NowShowingFragment extends Fragment {
 
 
     private void refreshList() {
+        Locale locale;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            locale = getResources().getConfiguration().getLocales().get(0);
+        } else {
+            locale = getResources().getConfiguration().locale;
+        }
+        String regionCode = locale.getCountry();
+
         Calendar calendar = Calendar.getInstance();
 
         String calendarString = CalendarUtils.calendarToString(calendar);
@@ -93,7 +103,7 @@ public class NowShowingFragment extends Fragment {
         TheMovieDbService theMovieDbService = TheMovieDbService.retrofit.create(TheMovieDbService.class);
 
         final Call<FilmResults> nowPlayingFilms = theMovieDbService.nowPlaying(getString(R.string
-                .moviedb_api_key), calendarString);
+                .moviedb_api_key), regionCode, calendarString);
 
         nowPlayingFilms.enqueue(new Callback<FilmResults>() {
             @Override
