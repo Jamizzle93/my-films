@@ -43,14 +43,14 @@ public class FavouriteFilmsFragment extends Fragment {
 
         // Setup ListView
         mFilmsRecyclerView = (RecyclerView) mLayoutView.findViewById(R.id.list_films);
-        List<Film> films = new ArrayList<>();
+        final List<Film> films = new ArrayList<>();
         mFilmsAdapter = new FilmAdapter(getActivity(), films);
         mFilmsRecyclerView.setAdapter(mFilmsAdapter);
         mFilmsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) mLayoutView.findViewById(R.id
                 .swipe_refresh_films);
-        swipeRefreshLayout.setVisibility(View.GONE);
+        swipeRefreshLayout.setEnabled(false);
 
         return mLayoutView;
     }
