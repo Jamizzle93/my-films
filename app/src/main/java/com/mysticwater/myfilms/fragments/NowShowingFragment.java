@@ -23,6 +23,7 @@ import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.FilmComparator;
+import com.mysticwater.myfilms.utils.Helpers;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
@@ -88,13 +89,7 @@ public class NowShowingFragment extends Fragment {
 
 
     private void refreshList() {
-        Locale locale;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            locale = getResources().getConfiguration().getLocales().get(0);
-        } else {
-            locale = getResources().getConfiguration().locale;
-        }
-        String regionCode = locale.getCountry();
+        String regionCode = Helpers.getRegionCode(getActivity());
 
         Calendar calendar = Calendar.getInstance();
 
