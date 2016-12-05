@@ -19,6 +19,7 @@ import com.crashlytics.android.Crashlytics;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.model.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
+import com.mysticwater.myfilms.utils.Helpers;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;
 
 import java.util.ArrayList;
@@ -111,10 +112,12 @@ public class SearchResultsActivity extends AppCompatActivity {
     }
 
     private void searchFilms(String query) {
+        String region = Helpers.getRegionCode(this);
+
         TheMovieDbService theMovieDbService = TheMovieDbService.retrofit.create(TheMovieDbService.class);
 
         final Call<FilmResults> searchFilms = theMovieDbService.searchFilms(getString(R.string
-                .moviedb_api_key), query);
+                .moviedb_api_key), region, query);
 
         searchFilms.enqueue(new Callback<FilmResults>() {
             @Override

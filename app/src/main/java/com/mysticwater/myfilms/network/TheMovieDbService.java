@@ -40,6 +40,7 @@ public interface TheMovieDbService {
     @GET("search/movie?")
     Call<FilmResults> searchFilms(
             @Query("api_key") String apiKey,
+            @Query("region") String region,
             @Query("query") String query
     );
 
