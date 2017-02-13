@@ -1,4 +1,4 @@
-package com.mysticwater.myfilms.fragments;
+package com.mysticwater.myfilms.upcoming;
 
 import com.google.gson.Gson;
 
@@ -39,12 +39,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NowShowingFragment extends Fragment {
+public class UpcomingFilmsFragment extends Fragment {
 
     private static final String LOG_TAG = "UpcomingFilmsFragment";
 
     private View mLayoutView;
 
+    // List View
     private RecyclerView mFilmsRecyclerView;
     private FilmAdapter mFilmsAdapter;
     private List<Film> mFilms;
@@ -78,6 +79,7 @@ public class NowShowingFragment extends Fragment {
                 }
         );
 
+
         return mLayoutView;
     }
 
@@ -87,32 +89,34 @@ public class NowShowingFragment extends Fragment {
         refreshList();
     }
 
-
     private void refreshList() {
         String regionCode = Helpers.getRegionCode(getActivity());
 
-        Calendar calendar = Calendar.getInstance();
+        Calendar startCal = Calendar.getInstance();
+        Calendar endCal = Calendar.getInstance();
+        endCal.add(Calendar.MONTH, 1);
 
-        String calendarString = CalendarUtils.calendarToString(calendar);
+        String startCalString = CalendarUtils.calendarToString(startCal);
+        String endCalString = CalendarUtils.calendarToString(endCal);
 
         TheMovieDbService theMovieDbService = TheMovieDbService.retrofit.create(TheMovieDbService.class);
 
-        final Call<FilmResults> nowPlayingFilms = theMovieDbService.nowPlaying(getString(R.string
-                .moviedb_api_key), regionCode, calendarString);
+        final Call<FilmResults> upcomingFilms = theMovieDbService.upcomingReleases(getString(R.string
+                .moviedb_api_key), regionCode, startCalString, endCalString);
 
-        nowPlayingFilms.enqueue(new Callback<FilmResults>() {
+        upcomingFilms.enqueue(new Callback<FilmResults>() {
             @Override
             public void onResponse(Call<FilmResults> call, Response<FilmResults> response) {
                 mSwipeRefreshLayout.setRefreshing(false);
 
                 FilmResults films = response.body();
                 if (films != null) {
-                    Uri nowShowingUri = FilmsProvider.NowShowingFilms.CONTENT_URI;
+                    Uri upcomingFilmsUri = FilmsProvider.UpcomingFilms.CONTENT_URI;
                     deleteAllFilms();
                     for (Film film : films.getFilms()) {
                         // Only care about films with a poster and backdrop
                         if (!TextUtils.isEmpty(film.getPosterPath()) && !TextUtils.isEmpty(film.getBackdropPath())) {
-                            FilmsDbHelper.insertFilm(getActivity(), nowShowingUri, film);
+                            FilmsDbHelper.insertFilm(getActivity(), upcomingFilmsUri, film);
                         }
                     }
                     fillList();
@@ -133,8 +137,8 @@ public class NowShowingFragment extends Fragment {
     private void fillList() {
         mFilms.clear();
 
-        Uri nowShowingUri = FilmsProvider.NowShowingFilms.CONTENT_URI;
-        Cursor allFilms = FilmsDbHelper.getAllFilms(getActivity(), nowShowingUri);
+        Uri upcomingFilmsUri = FilmsProvider.UpcomingFilms.CONTENT_URI;
+        Cursor allFilms = FilmsDbHelper.getAllFilms(getActivity(), upcomingFilmsUri);
         if (allFilms != null) {
             while (allFilms.moveToNext()) {
                 String filmJson = allFilms.getString(allFilms.getColumnIndex(FilmColumns.FILM));
@@ -149,7 +153,8 @@ public class NowShowingFragment extends Fragment {
     }
 
     private void deleteAllFilms() {
-        getActivity().getContentResolver().delete(FilmsProvider.NowShowingFilms.CONTENT_URI, "1", null);
+        getActivity().getContentResolver().delete(FilmsProvider.UpcomingFilms.CONTENT_URI, "1", null);
     }
+
 
 }

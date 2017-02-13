@@ -1,4 +1,4 @@
-package com.mysticwater.myfilms.fragments;
+package com.mysticwater.myfilms.filmdetail;
 
 import android.app.Fragment;
 import android.content.Intent;

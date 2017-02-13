@@ -3,7 +3,7 @@
 
     <header
         android:breadCrumbTitle="@string/title_about"
-        android:fragment="com.mysticwater.myfilms.fragments.settings.AboutSettingsFragment"
+        android:fragment="com.mysticwater.myfilms.settings.AboutSettingsFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/title_about" />
 

@@ -2,17 +2,15 @@ package com.mysticwater.myfilms.views.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mysticwater.myfilms.FilmDetailActivity;
+import com.mysticwater.myfilms.filmdetail.FilmDetailActivity;
 import com.mysticwater.myfilms.R;
 import com.mysticwater.myfilms.model.Film;
 import com.mysticwater.myfilms.utils.CalendarUtils;
@@ -21,7 +19,7 @@ import com.squareup.picasso.Picasso;
 import java.util.Collections;
 import java.util.List;
 
-import static com.mysticwater.myfilms.fragments.FilmDetailFragment.FILM_ID;
+import static com.mysticwater.myfilms.filmdetail.FilmDetailFragment.FILM_ID;
 
 public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
 

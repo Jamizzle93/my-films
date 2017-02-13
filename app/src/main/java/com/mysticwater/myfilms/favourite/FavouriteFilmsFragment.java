@@ -1,4 +1,4 @@
-package com.mysticwater.myfilms.fragments;
+package com.mysticwater.myfilms.favourite;
 
 import com.google.gson.Gson;
 

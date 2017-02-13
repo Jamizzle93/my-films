@@ -1,4 +1,4 @@
-package com.mysticwater.myfilms.fragments.settings;
+package com.mysticwater.myfilms.settings;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.mysticwater.myfilms.BuildConfig;
 import com.mysticwater.myfilms.R;
-import com.mysticwater.myfilms.SettingsActivity;
+import com.mysticwater.myfilms.settings.SettingsActivity;
 
 import java.util.Calendar;
 

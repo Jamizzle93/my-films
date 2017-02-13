@@ -9,21 +9,19 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
-import com.mysticwater.myfilms.fragments.FavouriteFilmsFragment;
-import com.mysticwater.myfilms.fragments.NowShowingFragment;
-import com.mysticwater.myfilms.fragments.UpcomingFilmsFragment;
+import com.mysticwater.myfilms.favourite.FavouriteFilmsFragment;
+import com.mysticwater.myfilms.nowshowing.NowShowingFragment;
+import com.mysticwater.myfilms.settings.SettingsActivity;
+import com.mysticwater.myfilms.upcoming.UpcomingFilmsFragment;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -35,15 +33,21 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set up Crashlytics
         Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
+
         setContentView(R.layout.activity_main);
 
+        // Set up the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Set up the view pager
         ViewPager viewPager = (ViewPager) findViewById(R.id.film_viewpager);
         setupViewPager(viewPager);
 
+        // Set up the tab layout
         TabLayout tabLayout = (TabLayout) findViewById(R.id.film_tabs);
         tabLayout.setupWithViewPager(viewPager);
     }

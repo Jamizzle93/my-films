@@ -1,10 +1,7 @@
-package com.mysticwater.myfilms;
-
-import com.google.gson.Gson;
+package com.mysticwater.myfilms.filmdetail;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,15 +9,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.mysticwater.myfilms.fragments.FilmDetailFragment;
+import com.mysticwater.myfilms.R;
+import com.mysticwater.myfilms.filmdetail.FilmDetailFragment;
 import com.mysticwater.myfilms.model.Film;
-import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
-import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 import com.squareup.picasso.Picasso;
 
-import static com.mysticwater.myfilms.fragments.FilmDetailFragment.FILM_ID;
-import static com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider.UpcomingFilms.CONTENT_URI;
+import static com.mysticwater.myfilms.filmdetail.FilmDetailFragment.FILM_ID;
 
 public class FilmDetailActivity extends AppCompatActivity {
 
