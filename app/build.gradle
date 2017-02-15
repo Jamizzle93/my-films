@@ -6,13 +6,10 @@ buildscript {
 
     dependencies {
         classpath 'io.fabric.tools:gradle:1.+'
-        classpath 'com.android.tools.build:gradle:2.2.3'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
-apply plugin: 'com.neenbedankt.android-apt'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -35,7 +32,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        jackOptions {
+            enabled true
+        }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         debug {
             applicationIdSuffix '.debug'
@@ -46,6 +53,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -54,9 +65,7 @@ dependencies {
     compile 'com.android.support:design:25.0.1'
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.android.support:percent:25.0.1'
-
-    // Gson (https://github.com/google/gson)
-    compile 'com.google.code.gson:gson:2.7'
+    compile "com.google.guava:guava:18.0"
 
     // Retrofit (https://github.com/square/retrofit)
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
@@ -77,19 +86,14 @@ dependencies {
         transitive = true;
     }
 
-    // Schmatic (https://github.com/SimonVT/schematic)
-    apt 'net.simonvt.schematic:schematic-compiler:0.6.7'
-    compile 'net.simonvt.schematic:schematic:0.6.7'
-    compile group: 'javax.annotation', name: 'jsr250-api', version: '1.0'
-
-    // Butterknife (https://github.com/JakeWharton/butterknife)
-    compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
-
     // Expandable text view (https://github.com/Manabu-GT/ExpandableTextView)
     compile 'com.ms-square:expandableTextView:0.1.4'
 
     // Material favourite button (https://github.com/IvBaranov/MaterialFavoriteButton)
     compile 'com.github.ivbaranov:materialfavoritebutton:0.1.2'
+
+    // rxJava
+    compile "io.reactivex:rxjava:1.1.8"
+    compile "io.reactivex:rxandroid:1.2.1"
 
 }

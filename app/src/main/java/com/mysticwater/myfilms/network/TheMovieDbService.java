@@ -1,7 +1,7 @@
 package com.mysticwater.myfilms.network;
 
-import com.mysticwater.myfilms.model.Film;
-import com.mysticwater.myfilms.model.FilmResults;
+import com.mysticwater.myfilms.data.Film;
+import com.mysticwater.myfilms.data.FilmResults;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;

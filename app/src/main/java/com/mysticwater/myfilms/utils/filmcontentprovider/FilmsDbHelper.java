@@ -6,12 +6,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.text.TextUtils;
 
-import com.mysticwater.myfilms.model.Film;
+import com.mysticwater.myfilms.data.Film;
 import com.mysticwater.myfilms.utils.JsonUtils;
-
-import static com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider.UpcomingFilms.CONTENT_URI;
 
 public class FilmsDbHelper {
 

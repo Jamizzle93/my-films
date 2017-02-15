@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.mysticwater.myfilms.filmdetail.FilmDetailActivity;
 import com.mysticwater.myfilms.R;
-import com.mysticwater.myfilms.model.Film;
+import com.mysticwater.myfilms.data.Film;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.squareup.picasso.Picasso;
 
@@ -36,7 +36,7 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
 
     @Override
     public FilmHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = inflater.inflate(R.layout.row_upcoming_film, parent, false);
+        View v = inflater.inflate(R.layout.row_film, parent, false);
         v.setOnClickListener(filmOnClickListener);
         FilmHolder filmHolder = new FilmHolder(v);
 

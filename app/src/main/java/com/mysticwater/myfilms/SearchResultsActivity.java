@@ -16,8 +16,8 @@ import android.view.Menu;
 import android.view.View;
 
 import com.crashlytics.android.Crashlytics;
-import com.mysticwater.myfilms.model.Film;
-import com.mysticwater.myfilms.model.FilmResults;
+import com.mysticwater.myfilms.data.Film;
+import com.mysticwater.myfilms.data.FilmResults;
 import com.mysticwater.myfilms.network.TheMovieDbService;
 import com.mysticwater.myfilms.utils.Helpers;
 import com.mysticwater.myfilms.views.adapters.FilmAdapter;

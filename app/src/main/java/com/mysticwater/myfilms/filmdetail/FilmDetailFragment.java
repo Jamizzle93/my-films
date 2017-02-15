@@ -8,7 +8,6 @@ import android.provider.CalendarContract;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -23,9 +22,8 @@ import com.crashlytics.android.Crashlytics;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.mysticwater.myfilms.R;
-import com.mysticwater.myfilms.model.Film;
-import com.mysticwater.myfilms.model.FilmResults;
-import com.mysticwater.myfilms.model.Genre;
+import com.mysticwater.myfilms.data.Film;
+import com.mysticwater.myfilms.data.Genre;
 import com.mysticwater.myfilms.network.TheMovieDbService;
 import com.mysticwater.myfilms.utils.CalendarUtils;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;
@@ -33,7 +31,6 @@ import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsProvider;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
 import butterknife.BindView;

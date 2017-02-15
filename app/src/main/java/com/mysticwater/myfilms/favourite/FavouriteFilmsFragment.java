@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mysticwater.myfilms.R;
-import com.mysticwater.myfilms.model.Film;
+import com.mysticwater.myfilms.data.Film;
 import com.mysticwater.myfilms.utils.FilmComparator;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmColumns;
 import com.mysticwater.myfilms.utils.filmcontentprovider.FilmsDbHelper;

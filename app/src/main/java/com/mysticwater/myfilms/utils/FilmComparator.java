@@ -1,6 +1,6 @@
 package com.mysticwater.myfilms.utils;
 
-import com.mysticwater.myfilms.model.Film;
+import com.mysticwater.myfilms.data.Film;
 
 import java.util.Calendar;
 import java.util.Comparator;
